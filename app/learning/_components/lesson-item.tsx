@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Lesson } from '@/types';
+import { Lesson } from '@/lib/types';
 
 import {
 	Collapsible,
