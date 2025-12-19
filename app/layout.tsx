@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 
-import Navbar from "@/components/layout/Navbar-v2";
+import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
@@ -21,13 +21,6 @@ export const metadata: Metadata = {
   description: "App that help practice and learn Japanese in various ways",
 };
 
-  const navLinks = [
-    { href: "/", title: "Trang chủ" },
-    { href: "/learning", title: "Học tập" },
-    { href: "/practice", title: "Luyện tập" },
-    { href: "/leaderboard", title: "Bảng xếp hạng" },
-  ];
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,7 +32,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* <Navbar /> */}
-        <Header navigationData={navLinks} />
+        <Toaster />
+        <Header />
         <div className="w-1/2 mx-auto flex flex-col items-center gap-6 text-center sm:items-start sm:text-left"></div>
         {children}
         <Footer />

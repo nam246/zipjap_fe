@@ -1,8 +1,22 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { notFound, usePathname } from "next/navigation";
 import { Level } from "@/lib/types";
 import type { LucideIcon } from "lucide-react";
 import { BookOpen, BookMarked, Languages, GraduationCap } from "lucide-react";
 import Link from "next/link";
+
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Progress } from "@/components/ui/progress";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 // Mock để demo - trong code thật sẽ nhận từ params
 const JLPTLevel: Level = Level.N5;
@@ -140,47 +154,12 @@ export default function LearningLayout({
   children: React.ReactNode;
   params: { JLPTLevel: Level };
 }) {
-  // Trong code thật, dùng usePathname() để detect active tab
-  const pathname = "/learning/N5/grammar"; // Mock
+  const pathname = usePathname();
   const activeTab = pathname.split("/").pop();
   const levelInfo = getLevelInfo(JLPTLevel);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50">
-      {/* Header với Level Badge */}
-      <div className="bg-white border-b-2 shadow-sm sticky top-0 z-20">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="flex items-center gap-4">
-            <div
-              className={`
-              p-4 rounded-2xl bg-gradient-to-br ${levelInfo.bgClass} 
-              shadow-lg
-            `}
-            >
-              <GraduationCap className="w-10 h-10 text-white" />
-            </div>
-            <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-3xl font-bold text-slate-900">
-                  JLPT {JLPTLevel}
-                </h1>
-                <div
-                  className={`
-                  px-3 py-1 rounded-full border-2 ${levelInfo.borderClass}
-                  bg-white text-sm font-medium text-slate-700
-                `}
-                >
-                  {levelInfo.description}
-                </div>
-              </div>
-              <p className="text-slate-600 mt-1">
-                Chọn nội dung học bên dưới để bắt đầu
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Sidebar Navigation */}
@@ -201,37 +180,32 @@ export default function LearningLayout({
               ))}
 
               {/* Progress Card */}
-              <div className="mt-6 p-4 bg-white rounded-xl border-2 border-slate-200">
-                <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-blue-500" />
-                  Tiến độ học tập
-                </h3>
-                <div className="space-y-3">
-                  {navItems.map((item) => (
-                    <div key={item.href}>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-700">{item.label}</span>
-                        <span className="font-medium text-slate-900">0%</span>
-                      </div>
-                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full bg-gradient-to-r ${levelInfo.bgClass} transition-all duration-500`}
-                          style={{ width: "0%" }}
-                        />
-                      </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-bold text-slate-900 flex items-center gap-2">
+                    <GraduationCap className="w-5 h-5 text-blue-500" />
+                    <span>Tiến độ học tập</span>
+                  </CardTitle>
+                </CardHeader>
+                {navItems.map((item) => (
+                  <CardContent key={item.href}>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-700">{item.label}</span>
+                      <span className="font-medium text-slate-900">0%</span>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <Progress value={30} />
+                  </CardContent>
+                ))}
+              </Card>
 
               {/* Quick Stats */}
-              <div className="p-4 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl text-white shadow-lg">
-                <div className="text-sm opacity-90 mb-1">
+              <Card className="bg-gradient-to-br from-blue-500 to-indigo-500 text-white">
+                <CardHeader className="text-sm opacity-90">
                   Tổng thời gian học
-                </div>
-                <div className="text-3xl font-bold">0h</div>
-                <div className="text-sm opacity-90 mt-2">Tuần này</div>
-              </div>
+                </CardHeader>
+                <CardContent className="text-3xl font-bold">0h</CardContent>
+                <CardFooter className="text-sm opacity-90">Tuần này</CardFooter>
+              </Card>
             </div>
           </aside>
 

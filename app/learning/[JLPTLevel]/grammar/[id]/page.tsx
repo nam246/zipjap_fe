@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import {
   ArrowLeft,
@@ -9,13 +11,32 @@ import {
   Copy,
   Volume2,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Item,
+  ItemHeader,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item";
+
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 import { lessons } from "@/lib/mockData";
 import { Level, Grammar } from "@/lib/types";
+import { Button } from "@/components/ui/button";
 
 // Mock data - thay bằng data thật từ API/database
 const lessonData = {
@@ -116,36 +137,32 @@ const getLevelColor = (level: Level) => {
   }
 };
 
-function GrammarPatternCard({ grammar, index }: {grammar: Grammar, index: number}) {
+function GrammarPatternCard({
+  grammar,
+  index,
+}: {
+  grammar: Grammar;
+  index: number;
+}) {
   return (
-    <Card className="border-2 hover:shadow-lg transition-all">
-      <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b-2">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
-              {index + 1}
-            </div>
-            <div>
-              <CardTitle className="text-2xl font-bold text-slate-900 mb-1">
-                {grammar.pattern}
-              </CardTitle>
-              <p className="text-blue-600 font-medium">{grammar.meaning}</p>
-            </div>
-          </div>
-          <Badge className={getLevelColor(grammar.level)}>
-            {grammar.level}
-          </Badge>
-        </div>
+    <Card>
+      <CardHeader className="border-b-2 pb-6">
+        <CardTitle className="text-2xl font-bold text-slate-900 mb-1">
+          {grammar.pattern}
+        </CardTitle>
+        <CardDescription>
+          <p className="text-blue-600 font-medium">{grammar.meaning}</p>
+        </CardDescription>
       </CardHeader>
 
-      <CardContent className="pt-6 space-y-6">
+      <CardContent className="space-y-6">
         {/* Cấu trúc */}
         <div>
           <div className="flex items-center gap-2 mb-3">
             <BookOpen className="w-5 h-5 text-blue-500" />
             <h3 className="font-bold text-lg text-slate-900">Cấu trúc</h3>
           </div>
-          <div className="bg-slate-900 text-white p-4 rounded-lg font-mono text-lg">
+          <div className="bg-slate-900 text-white p-4 rounded-md font-mono text-lg">
             {grammar.structure}
           </div>
         </div>
@@ -156,7 +173,7 @@ function GrammarPatternCard({ grammar, index }: {grammar: Grammar, index: number
             <Lightbulb className="w-5 h-5 text-amber-500" />
             <h3 className="font-bold text-lg text-slate-900">Giải thích</h3>
           </div>
-          <p className="text-slate-700 leading-relaxed bg-amber-50 p-4 rounded-lg border-l-4 border-amber-400">
+          <p className="text-slate-700 leading-relaxed bg-amber-50 p-4 rounded-md border-l-2 border-amber-400">
             {grammar.explaination}
           </p>
         </div>
@@ -172,42 +189,46 @@ function GrammarPatternCard({ grammar, index }: {grammar: Grammar, index: number
 
           {/* Ví dụ */}
           <TabsContent value="examples" className="space-y-4 mt-4">
-            {grammar.examples && grammar.examples.length > 0 ? (
-              grammar.examples.map((example, idx) => (
-                <Card key={idx} className="border-l-4 border-l-blue-500">
-                  <CardContent className="pt-4">
-                    <div className="space-y-3">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <p className="text-2xl font-bold text-slate-900 mb-1">
-                            {example.japanese}
-                          </p>
-                          <p className="text-slate-600 italic mb-2">
-                            {example.romaji}
-                          </p>
-                          <p className="text-lg text-blue-600 font-medium">
-                            → {example.vietnamese}
-                          </p>
-                        </div>
-                        <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
-                          <Volume2 className="w-5 h-5 text-slate-600" />
-                        </button>
+            <ItemGroup className="gap-4">
+              {grammar.examples && grammar.examples.length > 0 ? (
+                grammar.examples.map((example, idx) => (
+                  <Item key={idx} variant={"outline"}>
+                    <ItemHeader className="items-start">
+                      <ItemTitle className="flex-col items-start justify-start">
+                        <p className="text-slate-600 italic">
+                          {example.romaji}
+                        </p>
+                        <p className="text-2xl font-bold text-slate-900">
+                          {example.japanese}
+                        </p>
+                        <p className="text-lg text-blue-600 font-medium">
+                          → {example.vietnamese}
+                        </p>
+                      </ItemTitle>
+                      <ItemDescription>
+                        <Button>
+                          <Volume2 />
+                        </Button>
+                      </ItemDescription>
+                    </ItemHeader>
+                    <ItemContent>
+                      <div className="space-y-3">
+                        {example.explanation && (
+                          <Alert className="bg-blue-50 border-blue-200">
+                            <AlertCircle className="h-4 w-4 text-blue-600" />
+                            <AlertDescription className="text-sm text-slate-700">
+                              {example.explanation}
+                            </AlertDescription>
+                          </Alert>
+                        )}
                       </div>
-                      {example.explanation && (
-                        <Alert className="bg-blue-50 border-blue-200">
-                          <AlertCircle className="h-4 w-4 text-blue-600" />
-                          <AlertDescription className="text-sm text-slate-700">
-                            {example.explanation}
-                          </AlertDescription>
-                        </Alert>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))
-            ) : (
-              <p className="text-slate-500 text-center py-8">Chưa có ví dụ</p>
-            )}
+                    </ItemContent>
+                  </Item>
+                ))
+              ) : (
+                <p className="text-slate-500 text-center py-8">Chưa có ví dụ</p>
+              )}
+            </ItemGroup>
           </TabsContent>
 
           {/* Ghi chú */}
@@ -275,38 +296,30 @@ export default async function GrammarDetails({
 }: {
   params: Promise<{ id: string }>;
 }) {
-
-    const {id} = await params
-    const lessonById = lessons.filter(lesson => lesson.id === id)
-    console.log(lessonById);
-    
+  const { id } = await params;
+  const lessonById = lessons.filter((lesson) => lesson.id === id);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+    <div className="min-h-screen space-y-4">
       {/* Header */}
-      <div className="bg-white border-b-2 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 py-4">
+      <div className="bg-white rounded-md">
+        <div className="px-6 py-4">
           <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
+            <Button className="p-2 bg-transparent hover:bg-slate-100 rounded-md transition-colors">
               <ArrowLeft className="w-6 h-6 text-slate-700" />
-            </button>
+            </Button>
             <div className="flex-1">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-xl">
-                  {lessonById[0].lessonNumber}
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-slate-900">
-                    Bài {lessonById[0].lessonNumber} - {lessonById[0].source}
-                  </h1>
-                  <div className="flex items-center gap-3 mt-1">
-                    <Badge className={getLevelColor(lessonById[0].level)}>
-                      {lessonById[0].level}
-                    </Badge>
-                    <span className="text-sm text-slate-600">
-                      {lessonById[0].grammar.length} mẫu ngữ pháp
-                    </span>
-                  </div>
+                <h1 className="text-2xl font-bold text-slate-900">
+                  Bài {lessonById[0].lessonNumber} - {lessonById[0].source}
+                </h1>
+                <div className="flex items-center gap-3 mt-1">
+                  <Badge className={getLevelColor(lessonById[0].level)}>
+                    {lessonById[0].level != 0 ? lessonById[0].level : "N5"}
+                  </Badge>
+                  <span className="text-sm text-slate-600">
+                    {lessonById[0].grammar.length} mẫu ngữ pháp
+                  </span>
                 </div>
               </div>
             </div>
@@ -315,7 +328,7 @@ export default async function GrammarDetails({
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto">
         <div className="space-y-8">
           {lessonById[0].grammar.map((grammar, index) => (
             <GrammarPatternCard

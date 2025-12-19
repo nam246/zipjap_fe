@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Lesson, Level } from "@/lib/types";
 import { lessons } from "@/lib/mockData";
@@ -6,9 +8,28 @@ import {
   GraduationCap,
   ChevronRight,
   BookMarked,
+  Bookmark,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemHeader,
+  ItemTitle,
+} from "@/components/ui/item";
 
 const getLevelColor = (level: Level) => {
   switch (level) {
@@ -30,91 +51,100 @@ const getLevelColor = (level: Level) => {
 // Component cho từng lesson
 function LessonItem({ lesson }: { lesson: Lesson }) {
   return (
-	<Link href={`grammar/${lesson.id}`} className="block">
-		<Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-300 cursor-pointer">
-		<CardHeader className="pb-3">
-			<div className="flex items-start justify-between">
-			<div className="flex-1">
-				<div className="flex items-center gap-3 mb-2">
-				<div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white font-bold text-lg">
-					{lesson.lessonNumber}
-				</div>
-				<div>
-					<CardTitle className="text-xl font-bold text-slate-900">
-					Bài {lesson.lessonNumber}
-					</CardTitle>
-					<p className="text-sm text-slate-500 mt-1 flex items-center gap-2">
-					<BookMarked className="w-4 h-4" />
-					{lesson.source}
-					</p>
-				</div>
-				</div>
-			</div>
-			<div className="flex items-center gap-2">
-				<Badge className={`${getLevelColor(lesson.level)} border`}>
-				{lesson.level}
-				</Badge>
-				<ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
-			</div>
-			</div>
-		</CardHeader>
+    <Item className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
+      <ItemHeader className="flex items-start justify-between">
+        <ItemTitle>
+          <BookMarked />
+          <h1 className="text-xl font-bold text-slate-900">
+            Bài {lesson.lessonNumber}
+          </h1>
+          <p className="text-sm text-slate-500 mt-1 flex items-center gap-2">
+            {lesson.source}
+          </p>
+        </ItemTitle>
+        <ItemDescription>
+          
+        </ItemDescription>
+        <ItemActions className="flex items-center gap-2">
+          <Badge className={`${getLevelColor(lesson.level)} border`}>
+            {lesson.level}
+          </Badge>
 
-		<CardContent className="pt-0">
-			<div className="space-y-2">
-			<div className="flex items-center gap-2 text-sm text-slate-600 mb-3">
-				<GraduationCap className="w-4 h-4" />
-				<span className="font-medium">
-				{lesson.grammar.length} mẫu ngữ pháp
-				</span>
-			</div>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast("Item have been Bookmarked", {
+                description: "Sunday, December 03, 2023 at 9:00 AM",
+                action: {
+                  label: "Undo",
+                  onClick: () => console.log("Undo"),
+                },
+              })
+            }
+          >
+            <Bookmark className="text-slate-400 hover:text-blue-500 transition-all" />
+          </Button>
+          <Link href={`grammar/${lesson.id}`}>
+            <ChevronRight className="text-slate-400 hover:text-blue-500 hover:translate-x-1 transition-all" />
+          </Link>
+        </ItemActions>
+      </ItemHeader>
 
-			{/* Danh sách các pattern ngữ pháp */}
-			<div className="grid grid-cols-1 gap-2">
-				{lesson.grammar.map((item, index) => (
-				<div
-					key={item.id}
-					className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200"
-				>
-					<div className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex-shrink-0 mt-0.5">
-					{index + 1}
-					</div>
-					<div className="flex-1 min-w-0">
-					<div className="flex items-baseline gap-2 flex-wrap">
-						<span className="font-bold text-lg text-slate-900">
-						{item.pattern}
-						</span>
-						<span className="text-sm text-slate-600">
-						→ {item.meaning}
-						</span>
-					</div>
-					{item.structure && (
-						<div className="mt-1 text-sm text-slate-600 font-mono bg-white px-2 py-1 rounded border border-slate-200 inline-block">
-						{item.structure}
-						</div>
-					)}
-					{item.explaination && (
-						<p className="text-sm text-slate-500 mt-1">
-						{item.explaination}
-						</p>
-					)}
-					</div>
-				</div>
-				))}
-			</div>
-			</div>
-		</CardContent>
-		</Card>
-	</Link>
+      <ItemContent>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-sm text-slate-600 mb-3">
+            <GraduationCap className="w-4 h-4" />
+            <span className="font-medium">
+              {lesson.grammar.length} mẫu ngữ pháp
+            </span>
+          </div>
+
+          {/* Danh sách các pattern ngữ pháp */}
+          <div className="grid grid-cols-1 gap-2">
+            {lesson.grammar.map((item, index) => (
+              <div
+                key={item.id}
+                className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200"
+              >
+                <div className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex-shrink-0 mt-0.5">
+                  {index + 1}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="font-bold text-lg text-slate-900">
+                      {item.pattern}
+                    </span>
+                    <span className="text-sm text-slate-600">
+                      → {item.meaning}
+                    </span>
+                  </div>
+                  {item.structure && (
+                    <div className="mt-1 text-sm text-slate-600 font-mono bg-white px-2 py-1 rounded border border-slate-200 inline-block">
+                      {item.structure}
+                    </div>
+                  )}
+                  {item.explaination && (
+                    <p className="text-sm text-slate-500 mt-1">
+                      {item.explaination}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </ItemContent>
+    </Item>
   );
 }
 
 // Component chính
 export default function LearningGrammarPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 p-6">
+    <div className="min-h-screen">
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Header */}
-        <div className="space-y-3 mb-8">
+        <div className="space-y-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-500 rounded-xl shadow-lg">
               <BookOpen className="w-8 h-8 text-white" />
@@ -131,47 +161,55 @@ export default function LearningGrammarPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <Card className="border-2">
-            <CardContent className="pt-6">
-              <div className="text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="text-center">
+            <CardHeader>
+              <CardTitle>
                 <div className="text-3xl font-bold text-blue-600">
                   {lessons.length}
                 </div>
+              </CardTitle>
+              <CardDescription>
                 <div className="text-sm text-slate-600 mt-1">
                   Tổng số bài học
                 </div>
-              </div>
-            </CardContent>
+              </CardDescription>
+            </CardHeader>
           </Card>
-          <Card className="border-2">
-            <CardContent className="pt-6">
-              <div className="text-center">
+
+          <Card className="text-center">
+            <CardHeader>
+              <CardTitle>
                 <div className="text-3xl font-bold text-emerald-600">
                   {lessons.reduce((sum, l) => sum + l.grammar.length, 0)}
                 </div>
+              </CardTitle>
+              <CardDescription>
                 <div className="text-sm text-slate-600 mt-1">Mẫu ngữ pháp</div>
-              </div>
-            </CardContent>
+              </CardDescription>
+            </CardHeader>
           </Card>
-          <Card className="border-2">
-            <CardContent className="pt-6">
-              <div className="text-center">
+
+          <Card className="text-center">
+            <CardHeader>
+              <CardTitle>
                 <div className="text-3xl font-bold text-purple-600">N5</div>
+              </CardTitle>
+              <CardDescription>
                 <div className="text-sm text-slate-600 mt-1">
                   Trình độ hiện tại
                 </div>
-              </div>
-            </CardContent>
+              </CardDescription>
+            </CardHeader>
           </Card>
         </div>
 
         {/* Danh sách bài học */}
-        <div className="space-y-4">
+        <ItemGroup className="space-y-4">
           {lessons.map((lesson) => (
             <LessonItem key={lesson.id} lesson={lesson} />
           ))}
-        </div>
+        </ItemGroup>
       </div>
     </div>
   );
