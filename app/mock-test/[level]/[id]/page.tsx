@@ -102,7 +102,7 @@ const SectionQuestion = () => (
     </div>
 
     <div className="space-x-2 mt-2 flex justify-self-end">
-      <Button>Trang trước</Button>
+      <Button disabled>Trang trước</Button>
       <Button>Trang sau</Button>
     </div>
   </div>

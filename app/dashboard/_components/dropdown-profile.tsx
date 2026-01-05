@@ -20,6 +20,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { route } from "@/lib/constant";
 
 type Props = {
   trigger: ReactNode;
@@ -58,7 +60,7 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
         <DropdownMenuGroup>
           <DropdownMenuItem className="px-4 py-2.5 text-base">
             <UserIcon className="text-foreground size-5" />
-            <span>My account</span>
+            <Link href={`${route.dashboard}`}>My account</Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="px-4 py-2.5 text-base">
             <SettingsIcon className="text-foreground size-5" />

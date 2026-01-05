@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Grammar, Lesson, Level } from "@/lib/types";
 import { lessons, grammars } from "@/lib/mock-data";
 import {
-  BookOpen,
   GraduationCap,
   ChevronRight,
   BookMarked,

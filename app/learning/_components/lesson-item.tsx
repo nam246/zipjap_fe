@@ -1,43 +1,68 @@
 'use client';
-
-import { useState } from 'react';
 import { Lesson } from '@/lib/types';
 
-import {
-	Collapsible,
-	CollapsibleContent,
-	CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import { ChevronsUpDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
-export default function LessonItem({ lesson }: { lesson: Lesson }) {
-	const [isOpen, setIsOpen] = useState(false);
+export default function LessonItem({
+	children,
+	lesson,
+}: {
+	children: React.ReactNode;
+	lesson: Lesson;
+}) {
+	const grammar = grammars.filter((g) => g.lessonId === lesson.id);
 	return (
-		<Collapsible
-			open={isOpen}
-			onOpenChange={setIsOpen}
-			className='flex w-[350px] flex-col gap-2'
-		>
-			<div className='flex items-center justify-between gap-4 px-4'>
-				<h4 className='text-sm font-semibold'>Lesson {lesson.lessonNumber}</h4>
-				<CollapsibleTrigger asChild>
-					<Button variant='ghost' size='icon' className='size-8'>
-						<ChevronsUpDown />
-						<span className='sr-only'>Toggle</span>
-					</Button>
-				</CollapsibleTrigger>
-			</div>
-			<CollapsibleContent className='flex flex-col gap-2'>
-				{lesson.grammar.map((g, i) => (
-					<div key={i} className='rounded-md border px-4 py-2 font-mono text-sm'>
-						{g.structure}
-						<FontAwesomeIcon icon={faAnglesRight} className='float-end' />
+		<Card className='group hover:shadow-lg transition-all duration-300 cursor-pointer'>
+			<CardHeader>
+				<CardTitle className='text-xl font-bold text-slate-900 flex items-center gap-1'>
+					<BookMarked />
+					Bài {lesson.lessonNumber}
+				</CardTitle>
+				<CardDescription>
+					{lesson.source}
+					<div className='font-medium flex items-center gap-1'>
+						<GraduationCap className='w-4 h-4' />
+						{grammar.length} mẫu ngữ pháp
 					</div>
-				))}
-			</CollapsibleContent>
-		</Collapsible>
+				</CardDescription>
+				<CardAction className='flex items-center gap-2'>
+					<Badge variant='outline' className={`${getLevelColor(lesson.level)}`}>
+						{lesson.level}
+					</Badge>
+					<Button
+						variant='outline'
+						onClick={() =>
+							toast('Item have been Bookmarked', {
+								description: 'Sunday, December 03, 2023 at 9:00 AM',
+								action: {
+									label: 'Undo',
+									onClick: () => console.log('Undo'),
+								},
+							})
+						}
+					>
+						<Bookmark className='text-slate-400 hover:text-blue-500 transition-all' />
+					</Button>
+				</CardAction>
+			</CardHeader>
+
+			<CardContent>
+				<div className='space-y-2'>
+					{/* Danh sách các pattern ngữ pháp */}
+					<ItemGroup className='grid grid-cols-4 gap-2'>
+						{grammar.map((item, index) => (
+							<GrammarItem grammar={item} index={index} key={index} />
+						))}
+					</ItemGroup>
+				</div>
+			</CardContent>
+
+			<CardFooter>
+				<Link
+					className='text-slate-400 hover:text-blue-500 hover:translate-x-1 transition-all'
+					href={`grammar/${lesson.id}?isLesson=true`}
+				>
+					Xem toàn bộ bài {lesson.lessonNumber} <ChevronRight className='inline' />
+				</Link>
+			</CardFooter>
+		</Card>
 	);
 }
