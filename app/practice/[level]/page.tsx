@@ -28,11 +28,11 @@ const vocabularyContent = [
   },
   {
     title: "biểu hiện từ",
-    type: VocabularyPracticeContent.WORD_EXPRESSIONS
+    type: VocabularyPracticeContent.WORD_EXPRESSIONS,
   },
   {
     title: "Từ đồng nghĩa",
-    type: VocabularyPracticeContent.SYNONYMS
+    type: VocabularyPracticeContent.SYNONYMS,
   },
 ];
 
@@ -54,6 +54,29 @@ const listeningContent = [
   { title: "Nghe hiểu diễn đạt" },
   { title: "Trả lời nhanh" },
 ];
+
+const Content = ({ content }: { content: any }) => {
+  return (
+    <div className="grid grid-cols-3 gap-3">
+      {content.map((c: any, index: number) => (
+        <Card key={index}>
+          <CardHeader>
+            <CardTitle>{c.title}</CardTitle>
+            <CardDescription></CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Progress />
+          </CardContent>
+          <CardFooter>
+            <Link href={`/practice/${c.level}/vocabulary?type=${c?.type}`}>
+              Luyện tập ngay
+            </Link>
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  );
+};
 
 export default async function PracticeListPage({
   params,
@@ -93,7 +116,8 @@ export default async function PracticeListPage({
           </div>
         </TabsContent>
         <TabsContent value="grammar">
-          <div className="grid grid-cols-3 gap-3">
+          <Content content={grammarContent} />
+          {/* <div className="grid grid-cols-3 gap-3">
             {grammarContent.map((content, index) => (
               <Card key={index}>
                 <CardHeader>
@@ -106,10 +130,11 @@ export default async function PracticeListPage({
                 <CardFooter></CardFooter>
               </Card>
             ))}
-          </div>
+          </div> */}
         </TabsContent>
         <TabsContent value="reading">
-          <div className="grid grid-cols-3 gap-3">
+          <Content content={readingContent} />
+          {/* <div className="grid grid-cols-3 gap-3">
             {readingContent.map((content, index) => (
               <Card key={index}>
                 <CardHeader>
@@ -122,10 +147,11 @@ export default async function PracticeListPage({
                 <CardFooter></CardFooter>
               </Card>
             ))}
-          </div>
+          </div> */}
         </TabsContent>
         <TabsContent value="listening">
-          <div className="grid grid-cols-3 gap-3">
+          <Content content={listeningContent} />
+          {/* <div className="grid grid-cols-3 gap-3">
             {listeningContent.map((content, index) => (
               <Card key={index}>
                 <CardHeader>
@@ -138,7 +164,7 @@ export default async function PracticeListPage({
                 <CardFooter></CardFooter>
               </Card>
             ))}
-          </div>
+          </div> */}
         </TabsContent>
       </Tabs>
     </div>

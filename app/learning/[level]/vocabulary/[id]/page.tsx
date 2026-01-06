@@ -1,4 +1,5 @@
 import { examples, vocabularies } from "@/lib/mock-data";
+import { getVocabularyById } from "@/lib/data";
 import { ArrowLeft, BookOpen, Volume2 } from "lucide-react";
 import Link from "next/link";
 
@@ -25,10 +26,16 @@ export default async function VocabularyDetails({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-
+  const vocabulary = await getVocabularyById(id);
+  
   // Tối ưu: Sử dụng find thay vì filter
-  const vocabulary = vocabularies.find((v) => v.id === id);
-
+  // const vocabulary = vocabularies.find((v) => v.id === id);
+  
+  // Tối ưu: Sử dụng find thay vì filter và loại bỏ undefined
+  const getExampleById = (exId: string) => {
+    return examples.find((ex) => ex.id === exId);
+  };
+  
   // Handle không tìm thấy từ vựng
   if (!vocabulary) {
     return (
@@ -52,11 +59,6 @@ export default async function VocabularyDetails({
       </div>
     );
   }
-
-  // Tối ưu: Sử dụng find thay vì filter và loại bỏ undefined
-  const getExampleById = (exId: string) => {
-    return examples.find((ex) => ex.id === exId);
-  };
 
   return (
     <>

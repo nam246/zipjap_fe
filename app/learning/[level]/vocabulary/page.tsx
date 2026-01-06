@@ -1,11 +1,11 @@
 import { getLessons } from '@/lib/data';
 import { getVocabularies } from '@/lib/data';
+import { Lesson, Level, Vocabulary } from '@/lib/types';
 
-import LearningHeader from '../../_components/learning-header';
-import VocabularyItem from '../../_components/vocabulary-item';
+import LearningHeader from '@/app/learning/_components/learning-header';
+import VocabularyItem from '@/app/learning/_components/vocabulary-item';
 import { BookMarked, GraduationCap } from 'lucide-react';
 import { ItemGroup } from '@/components/ui/item';
-import { LessonResponse, Level, Vocabulary } from '@/lib/types';
 import {
 	Card,
 	CardContent,
@@ -26,8 +26,8 @@ export default async function LearningVocabularyPage({
 		getVocabularies(),
 	]);
 
-	const lessonByLevel = (): LessonResponse[] => {
-		return lessonsData.filter((l: LessonResponse) => {
+	const lessonByLevel = (): Lesson[] => {
+		return lessonsData.filter((l: Lesson) => {
 			return l.level === level.toUpperCase();
 		});
 	};

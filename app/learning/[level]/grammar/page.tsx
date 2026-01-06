@@ -31,7 +31,7 @@ import {
   ItemHeader,
   ItemTitle,
 } from "@/components/ui/item";
-import LearningHeader from "../../_components/learning-header";
+import LearningHeader from "@/app/learning/_components/learning-header";
 
 const getLevelColor = (level: Level) => {
   switch (level) {

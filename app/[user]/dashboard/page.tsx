@@ -48,15 +48,15 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-import LanguageDropdown from "@/app/dashboard/_components/language-dropdown";
-import ProductInsightsCard from "@/app/dashboard/_components/widget-product-insights";
-import ProfileDropdown from "@/app/dashboard/_components/dropdown-profile";
-import SalesMetricsCard from "@/app/dashboard/_components/chart-sales-metrics";
-import StatisticsCard from "@/app/dashboard/_components/statistics-card-01";
-import TotalEarningCard from "@/app/dashboard/_components/widget-total-earning";
+import LanguageDropdown from "@/app/[user]/_components/language-dropdown";
+import ProductInsightsCard from "@/app/[user]/_components/widget-product-insights";
+import ProfileDropdown from "@/app/[user]/_components/dropdown-profile";
+import SalesMetricsCard from "@/app/[user]/_components/chart-sales-metrics";
+import StatisticsCard from "@/app/[user]/_components/statistics-card-01";
+import TotalEarningCard from "@/app/[user]/_components/widget-total-earning";
 import TransactionDatatable, {
   type Item,
-} from "@/app/dashboard/_components/datatable-transaction";
+} from "@/app/[user]/_components/datatable-transaction";
 
 // Statistics card data
 const StatisticsCardData = [

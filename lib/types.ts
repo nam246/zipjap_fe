@@ -1,4 +1,4 @@
-export type LessonResponse = {
+export type Lesson = {
 	id: string;
 	lessonTitle: string;
 	level: Level;
@@ -18,6 +18,8 @@ export type Vocabulary = {
 	exampleId: string[];
 	mediaId: string[];
 	lessonId?: string;
+	createdAt: string;
+	updatedAt: string;
 };
 
 export type Grammar = {

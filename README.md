@@ -55,4 +55,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Chức năng làm bài thi thử
 
+## Có nên thêm 1 bảng giáo trình? (TextBook) => sẽ bỏ Source enum
+
+```
+Tên giáo trình
+level
+Lesson[]
+textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
+```
+
 ## Chắc là thêm 1 tính năng admin dashboard bằng Django admin?

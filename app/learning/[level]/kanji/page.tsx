@@ -1,7 +1,7 @@
 import { kanjis, lessons } from '@/lib/mock-data';
 import Link from 'next/link';
 
-import LearningHeader from '../../_components/learning-header';
+import LearningHeader from '@/app/learning/_components/learning-header';
 
 import {
 	Bookmark,

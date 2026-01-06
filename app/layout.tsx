@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 	description: 'A Web-Based System for Japanese Language Learning and JLPT Examination Practice with User-Defined Content',
 };
 
+// chắc nên mang header và footer vào page
 export default function RootLayout({
 	children,
 }: Readonly<{
