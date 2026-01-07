@@ -65,3 +65,14 @@ textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
 ```
 
 ## Chắc là thêm 1 tính năng admin dashboard bằng Django admin?
+
+## Layout theo nhóm trang (Grouped Layouts):
+
+- app/(marketing)/layout.js: Cho các trang marketing (trang chủ, giới thiệu).
+- app/(dashboard)/layout.js: Cho các trang admin/dashboard (có sidebar, header riêng).
+- app/dashboard/page.js: Nội dung trang dashboard, được bao bọc bởi (dashboard)/layout.js.
+
+### Mẹo nâng cao
+
+- Grouped Layouts: Dùng (ten-group)/layout.js để tạo layout cho một nhóm trang mà không tạo thêm URL (ví dụ: (dashboard)).
+- Parallel Routes: Dùng @folder/layout.js để render nhiều layout cùng lúc (ví dụ: layout chính và layout modal).
