@@ -11,9 +11,9 @@ export default async function PracticeVocabularyPage({
   const { level } = await params;
   const { type } = await searchParams;
   return (
-    <div className="container mx-auto">
-        <h1 className="">{type}</h1>
+    <>
+      <h1 className="">{type}</h1>
       <PracticeQuestion />
-    </div>
+    </>
   );
 }
