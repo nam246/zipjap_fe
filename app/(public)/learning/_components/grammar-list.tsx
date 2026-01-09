@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/item';
 import { toast } from 'sonner';
 
-export default function GrammarsItem({
+export default function GrammarList({
 	grammars,
 }: {
 	grammars: Grammar[];

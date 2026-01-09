@@ -15,7 +15,7 @@ import {
 import { Vocabulary } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 
-export default function VocabulariesItem({
+export default function VocabularyList({
 	vocabularies,
 }: {
 	vocabularies: Vocabulary[];
