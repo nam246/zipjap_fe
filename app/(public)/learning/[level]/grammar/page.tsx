@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import LessonItem from '@/components/layout/learning/lesson-items';
 import LearningHeader from '@/components/layout/learning/learning-header';
-import GrammarItems from '../../_components/grammars-item';
+import { GrammarList } from '@/components/entities';
 
 export default async function LearningGrammarPage({
 	params,
@@ -68,7 +68,7 @@ export default async function LearningGrammarPage({
 			<div className='space-y-4'>
 				{lessons.map((lesson, index) => (
 					<LessonItem key={index} lesson={lesson}>
-						<GrammarItems grammars={grammarsByLessonId(lesson.id)} />
+						<GrammarList grammars={grammarsByLessonId(lesson.id)} />
 					</LessonItem>
 				))}
 			</div>

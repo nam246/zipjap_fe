@@ -64,8 +64,8 @@ const HeroSection = () => {
 
 			{/* Image */}
 			<img
-				src='https://cdn.shadcnstudio.com/ss-assets/blocks/marketing/hero/image-19.png'
-				alt='Dishes'
+				src='https://images.unsplash.com/photo-1528164344705-47542687000d?w=800'
+				alt='Japanese study materials'
 				className='min-h-67 w-full object-cover'
 			/>
 		</section>

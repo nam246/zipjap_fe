@@ -1,4 +1,4 @@
-import PracticeQuestion from "@/app/practice/_components/practice-question";
+import PracticeQuestion from "../../_components/practice-question";
 import { Level } from "@/lib/types";
 
 export default async function PracticeVocabularyPage({

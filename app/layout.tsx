@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+// @ts-ignore
 import '@/styles/globals.css';
 
 import { ThemeProvider } from '@/components/theme-provider';
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: 'Renshyuu | Practice your ways',
 	description:
-		'A Web-Based System for Japanese Language Learning and JLPT Examination Practice with User-Defined Content',
+		'A Web-Based Application for Japanese Language Learning and JLPT Examination Practice',
 };
 
 // chắc nên mang header và footer vào page

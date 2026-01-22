@@ -1,5 +1,3 @@
-import { cn } from '@/lib/utils';
-import { lessons, examples, grammars } from '@/lib/mock-data';
 import { getGrammarById } from '@/lib/data';
 import DetailsNotFound from '../../../_components/details-not-found';
 
@@ -21,55 +19,21 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import {
-	Item,
-	ItemHeader,
-	ItemActions,
-	ItemContent,
-	ItemDescription,
-	ItemGroup,
-	ItemMedia,
-	ItemTitle,
-} from '@/components/ui/item';
 
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-import { Level, Grammar, Example } from '@/lib/types';
-import { Button } from '@/components/ui/button';
+import { Grammar } from '@/lib/types';
 import DetailsHeader from '../../../_components/details-header';
-
-const getLevelColor = (level: Level) => {
-	switch (level) {
-		case Level.N5:
-			return 'bg-emerald-500 text-white';
-		case Level.N4:
-			return 'bg-blue-500 text-white';
-		case Level.N3:
-			return 'bg-purple-500 text-white';
-		case Level.N2:
-			return 'bg-orange-500 text-white';
-		case Level.N1:
-			return 'bg-red-500 text-white';
-		default:
-			return 'bg-gray-500 text-white';
-	}
-};
-
-function getExampleById(id: string) {
-	return examples.filter((ex) => ex.id === id);
-}
+import Examples from '../../../_components/examples';
 
 function GrammarPatternCard({ grammar }: { grammar: Grammar }) {
 	return (
 		<Card>
 			<CardHeader className='border-b-2 pb-6'>
-				<CardTitle className='text-2xl font-bold text-slate-900 mb-1'>
-					{grammar.pattern}
-				</CardTitle>
+				<CardTitle className='text-2xl font-bold mb-1'>{grammar.pattern}</CardTitle>
 				<CardDescription>
-					<p className='text-blue-600 font-medium'>{grammar.meaning}</p>
+					<p className='font-medium'>{grammar.meaning}</p>
 				</CardDescription>
 			</CardHeader>
 
@@ -77,21 +41,19 @@ function GrammarPatternCard({ grammar }: { grammar: Grammar }) {
 				{/* Cấu trúc */}
 				<div>
 					<div className='flex items-center gap-2 mb-3'>
-						<BookOpen className='w-5 h-5 text-blue-500' />
-						<h3 className='font-bold text-lg text-slate-900'>Cấu trúc</h3>
+						<BookOpen className='w-5 h-5' />
+						<h3 className='font-bold text-lg'>Cấu trúc</h3>
 					</div>
-					<div className='bg-slate-900 text-white p-4 rounded-md font-mono text-lg'>
-						{grammar.structure}
-					</div>
+					<div className='p-4 rounded-md font-mono text-lg'>{grammar.structure}</div>
 				</div>
 
 				{/* Giải thích */}
 				<div>
 					<div className='flex items-center gap-2 mb-3'>
-						<Lightbulb className='w-5 h-5 text-amber-500' />
-						<h3 className='font-bold text-lg text-slate-900'>Giải thích</h3>
+						<Lightbulb className='w-5 h-5' />
+						<h3 className='font-bold text-lg'>Giải thích</h3>
 					</div>
-					<p className='text-slate-700 leading-relaxed bg-amber-50 p-4 rounded-md border-l-2 border-amber-400'>
+					<p className='leading-relaxed p-4 rounded-md border-l-2'>
 						{grammar.explaination}
 					</p>
 				</div>
@@ -100,54 +62,14 @@ function GrammarPatternCard({ grammar }: { grammar: Grammar }) {
 				<Tabs defaultValue='examples' className='w-full'>
 					<TabsList className='grid w-full grid-cols-2'>
 						<TabsTrigger value='examples'>
-							{/* Ví dụ ({grammar.exampleId.length || 0}) */}
+							Ví dụ ({grammar.examples.length || 0})
 						</TabsTrigger>
 						<TabsTrigger value='notes'>Ghi chú</TabsTrigger>
 					</TabsList>
 
 					{/* Ví dụ */}
 					<TabsContent value='examples' className='space-y-4 mt-4'>
-						<ItemGroup className='gap-4'>
-							{grammar.exampleId && grammar.exampleId.length > 0 ? (
-								grammar.exampleId.map(
-									(exId, idx) =>
-										getExampleById(exId).length > 0 &&
-										getExampleById(exId).map((example, index) => (
-											<Item key={index} variant={'outline'}>
-												<ItemHeader className='items-start'></ItemHeader>
-												<ItemContent>
-													<ItemTitle className='flex-col items-start justify-start'>
-														<p className='text-slate-600 italic'>{example.romaji}</p>
-														<p className='text-2xl font-bold text-slate-900'>
-															{example.japanese}
-														</p>
-														<p className='text-lg text-blue-600 font-medium'>
-															→ {example.vietnamese}
-														</p>
-													</ItemTitle>
-													<ItemDescription>
-														<Button>
-															<Volume2 />
-														</Button>
-													</ItemDescription>
-													<div className='space-y-3'>
-														{example.explanation && (
-															<Alert className='bg-blue-50 border-blue-200'>
-																<AlertCircle className='h-4 w-4 text-blue-600' />
-																<AlertDescription className='text-sm text-slate-700'>
-																	{example.explanation}
-																</AlertDescription>
-															</Alert>
-														)}
-													</div>
-												</ItemContent>
-											</Item>
-										))
-								)
-							) : (
-								<p className='text-slate-500 text-center py-8'>Chưa có ví dụ</p>
-							)}
-						</ItemGroup>
+						<Examples examples={grammar.examples} />
 					</TabsContent>
 
 					{/* Ghi chú */}
@@ -193,7 +115,6 @@ function GrammarPatternCard({ grammar }: { grammar: Grammar }) {
                 </ul>
               </div>
             )} */}
-
 						{/* General Notes */}
 						{grammar.notes && (
 							<Alert className='bg-slate-50'>

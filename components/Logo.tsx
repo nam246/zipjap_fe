@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Logo = (props: SVGAttributes<SVGElement>) => {
   return (
-    <Link href="/" className="flex items-center gap-2 group">
+    <div className="flex items-center gap-2 group">
       <div className="size-8 text-primary">
         <svg
           className="w-full h-full"
@@ -31,7 +31,7 @@ const Logo = (props: SVGAttributes<SVGElement>) => {
         </span>
         <div className="text-xs text-slate-500 -mt-1">Practice your ways</div>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import { Lesson, Level, Vocabulary } from '@/lib/types';
 
 import LearningHeader from '@/components/layout/learning/learning-header';
 import LessonItem from '@/components/layout/learning/lesson-items';
-import VocabularyItem from '../../_components/vocabularies-item';
+import { VocabularyList } from '@/components/entities';
 
 export default async function LearningVocabularyPage({
 	params,
@@ -32,7 +32,7 @@ export default async function LearningVocabularyPage({
 				{lessons.length > 0 &&
 					lessons.map((lesson, idx) => (
 						<LessonItem lesson={lesson} key={idx}>
-							<VocabularyItem vocabularies={vocabulariesByLessonId(lesson.id)} />
+							<VocabularyList vocabularies={vocabulariesByLessonId(lesson.id)} />
 						</LessonItem>
 					))}
 			</div>

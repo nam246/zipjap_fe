@@ -30,7 +30,7 @@ export type Grammar = {
 	explaination?: string;
 	notes: string;
 	level: Level;
-	exampleId: string[];
+	examples: Example[];
 	lessonId?: string;
 };
 
