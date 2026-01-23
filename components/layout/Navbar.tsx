@@ -270,7 +270,7 @@ export default function Navbar() {
 									</NavigationMenuLink>
 								</li>
 							</ul>
-						</NavigationMenuContent>
+						</NavigationMenuContent>s
 					</NavigationMenuItem>
 
 					{/* Navigation Item 5 */}
@@ -285,7 +285,7 @@ export default function Navbar() {
 											Renshyuu JLPT
 										</Link>
 									</NavigationMenuLink>
-									<NavigationMenuLink asChild>
+									<NavigationMenuLink asChild> 
 										<Link href='/about' className='flex-row items-center gap-2'>
 											<CircleIcon />
 											Us
