@@ -203,6 +203,31 @@ export default function Navbar() {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 
+					<NavigationMenuItem className='hidden md:block'>
+						<NavigationMenuTrigger>Practice</NavigationMenuTrigger>
+						<NavigationMenuContent>
+							<ul className='grid w-[200px] gap-4'>
+								<li>
+									<NavigationMenuLink asChild>
+										<Link href='/practice'>Vocabulary</Link>
+									</NavigationMenuLink>
+									<NavigationMenuLink asChild>
+										<Link href='/about'>Grammar</Link>
+									</NavigationMenuLink>
+									<NavigationMenuLink asChild>
+										<Link href='/about'>Kanji</Link>
+									</NavigationMenuLink>
+									<NavigationMenuLink asChild>
+										<Link href='/contact'>Reading</Link>
+									</NavigationMenuLink>
+									<NavigationMenuLink asChild>
+										<Link href='/contact'>Listening</Link>
+									</NavigationMenuLink>
+								</li>
+							</ul>
+						</NavigationMenuContent>
+					</NavigationMenuItem>
+
 					{/* Navigation Item 4 */}
 					<NavigationMenuItem className='hidden md:block'>
 						<NavigationMenuTrigger>Thi thử</NavigationMenuTrigger>
@@ -255,18 +280,34 @@ export default function Navbar() {
 							<ul className='grid w-[200px] gap-4'>
 								<li>
 									<NavigationMenuLink asChild>
-										<Link href='#'>Renshyuu JLPT</Link>
+										<Link href='/info' className='flex-row items-center gap-2'>
+											<CircleHelpIcon />
+											Renshyuu JLPT
+										</Link>
 									</NavigationMenuLink>
 									<NavigationMenuLink asChild>
-										<Link href='#'>Us</Link>
+										<Link href='/about' className='flex-row items-center gap-2'>
+											<CircleIcon />
+											Us
+										</Link>
 									</NavigationMenuLink>
 									<NavigationMenuLink asChild>
-										<Link href='#'>Blocks</Link>
+										<Link href='/contact' className='flex-row items-center gap-2'>
+											<CircleCheckIcon />
+											Contact
+										</Link>
+									</NavigationMenuLink>
+									<NavigationMenuLink asChild>
+										<Link href='#' className='flex-row items-center gap-2'>
+											<CircleCheckIcon />
+											Quick Link
+										</Link>
 									</NavigationMenuLink>
 								</li>
 							</ul>
 						</NavigationMenuContent>
 					</NavigationMenuItem>
+
 				</NavigationMenuList>
 			</NavigationMenu>
 

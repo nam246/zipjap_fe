@@ -23,7 +23,7 @@ interface MockTestFormData {
 	questions: Question[];
 }
 
-const AddMockTestPage = () => {
+const MockTestBuilderPage = () => {
 	const [formData, setFormData] = useState<MockTestFormData>({
 		title: '',
 		description: '',
@@ -511,4 +511,4 @@ const AddMockTestPage = () => {
 	);
 };
 
-export default AddMockTestPage;
+export default MockTestBuilderPage;

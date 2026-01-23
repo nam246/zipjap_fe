@@ -129,7 +129,7 @@ const MOCK_BOOKMARKED_GRAMMAR: GrammarItem[] = [
 	},
 ];
 
-export default function GrammarListPage() {
+export default function BookmarkedGrammarPage() {
 	const [bookmarkedGrammar, setBookmarkedGrammar] = useState<GrammarItem[]>([]);
 	const [loading, setLoading] = useState(true);
 

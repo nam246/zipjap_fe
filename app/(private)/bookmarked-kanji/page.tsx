@@ -177,7 +177,7 @@ const MOCK_BOOKMARKED_KANJI: KanjiItem[] = [
 	},
 ];
 
-export default function KanjiListPage() {
+export default function BookmarkedKanjiPage() {
 	const [bookmarkedKanji, setBookmarkedKanji] = useState<KanjiItem[]>([]);
 	const [loading, setLoading] = useState(true);
 

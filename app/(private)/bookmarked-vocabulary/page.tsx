@@ -129,7 +129,7 @@ const MOCK_BOOKMARKED_VOCABULARY: VocabularyItem[] = [
 	},
 ];
 
-export default function VocabularyListPage() {
+export default function BookmarkedVocabularyPage() {
 	const [bookmarkedVocab, setBookmarkedVocab] = useState<VocabularyItem[]>([]);
 	const [loading, setLoading] = useState(true);
 
