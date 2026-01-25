@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from "react";
 
 import {
@@ -22,6 +24,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { route } from "@/lib/constant";
+import { useAuth } from '@/lib/auth-context';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   trigger: ReactNode;
@@ -29,7 +33,16 @@ type Props = {
   align?: "start" | "center" | "end";
 };
 
+
+
 const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
   return (
     <DropdownMenu defaultOpen={defaultOpen}>
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
@@ -92,6 +105,7 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
+          onClick={handleLogout}
           variant="destructive"
           className="px-4 py-2.5 text-base"
         >

@@ -29,8 +29,7 @@ import ProtectedRouteWrapper from '@/components/protected-route-wrapper';
 
 const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		// <ProtectedRouteWrapper>
-		// </ProtectedRouteWrapper>
+		<ProtectedRouteWrapper>
 			<div className='flex w-full'>
 				<DashBoardSideboardProvider>
 					<div className='flex flex-1 flex-col'>
@@ -107,6 +106,7 @@ const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
 					</div>
 				</DashBoardSideboardProvider>
 			</div>
+		</ProtectedRouteWrapper>
 	);
 };
 

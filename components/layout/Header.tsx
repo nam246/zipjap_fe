@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 
 import Logo from "@/components/Logo";
 import Navbar from "./Navbar";
+import LoginButton from "./LoginButton";
 
 export type NavigationSection = {
   title: string;
@@ -23,6 +24,8 @@ const Header = ({ className }: HeaderProps) => {
 
         {/* Navigation */}
         <Navbar />
+
+        <LoginButton />
       </div>
     </header>
   );

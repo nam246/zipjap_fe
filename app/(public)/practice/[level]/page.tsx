@@ -55,6 +55,10 @@ const listeningContent = [
   { title: "Trả lời nhanh" },
 ];
 
+type Content = {
+  title: string;
+}
+
 const Content = ({ content }: { content: any }) => {
   return (
     <div className="grid grid-cols-3 gap-3">

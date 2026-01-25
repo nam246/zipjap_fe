@@ -76,3 +76,11 @@ textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
 
 - Grouped Layouts: Dùng (ten-group)/layout.js để tạo layout cho một nhóm trang mà không tạo thêm URL (ví dụ: (dashboard)).
 - Parallel Routes: Dùng @folder/layout.js để render nhiều layout cùng lúc (ví dụ: layout chính và layout modal).
+
+
+### Sửa lại page user
+
+- không sử dụng tab, chia ra từng page 1
+- sửa lại dashboard sidebar cho đúng link, tên.
+- bỏ nút đăng xuất ở trang user
+- sửa breadcrumb cho đúng với link

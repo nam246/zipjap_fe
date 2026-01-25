@@ -27,109 +27,112 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import LoginButton from './LoginButton';
 // import ProfileDropdown from '@/app/dashboard/_components/dropdown-profile';
 
 const learningMenuItems: {
 	title: string;
 	items: { level: string; href: string; description: string }[];
 }[] = [
-	{
-		title: 'Grammar',
-		items: [
-			{
-				level: Level.N5,
-				href: `${route.learning}/n5/grammar`,
-				description: 'Minna no Nihongo',
-			},
-			{
-				level: Level.N4,
-				href: `${route.learning}/n4/grammar`,
-				description: 'Minna no Nihongo',
-			},
-			{
-				level: Level.N3,
-				href: `${route.learning}/n3/grammar`,
-				description: 'Soumatome',
-			},
-			{
-				level: Level.N2,
-				href: `${route.learning}/n2/grammar`,
-				description: 'Soumatome',
-			},
-			{
-				level: Level.N1,
-				href: `${route.learning}/n1/grammar`,
-				description: 'Soumatome',
-			},
-		],
-	},
-	{
-		title: 'Vocabulary',
-		items: [
-			{
-				level: Level.N5,
-				href: `${route.learning}/n5/vocabulary`,
-				description: 'Minna no Nihongo',
-			},
-			{
-				level: Level.N4,
-				href: `${route.learning}/n4/vocabulary`,
-				description: 'Minna no Nihongo',
-			},
-			{
-				level: Level.N3,
-				href: `${route.learning}/n3/vocabulary`,
-				description: 'Soumatome',
-			},
-			{
-				level: Level.N2,
-				href: `${route.learning}/n2/vocabulary`,
-				description: 'Soumatome',
-			},
-			{
-				level: Level.N1,
-				href: `${route.learning}/n1/vocabulary`,
-				description: 'Soumatome',
-			},
-		],
-	},
-	{
-		title: 'Kanji',
-		items: [
-			{
-				level: Level.N5,
-				href: `${route.learning}/n5/kanji`,
-				description: 'Minna no Nihongo',
-			},
-			{
-				level: Level.N4,
-				href: `${route.learning}/n4/kanji`,
-				description: 'Minna no Nihongo',
-			},
-			{
-				level: Level.N3,
-				href: `${route.learning}/n3/kanji`,
-				description: 'Soumatome',
-			},
-			{
-				level: Level.N2,
-				href: `${route.learning}/n2/kanji`,
-				description: 'Soumatome',
-			},
-			{
-				level: Level.N1,
-				href: `${route.learning}/n1/kanji`,
-				description: 'Soumatome',
-			},
-		],
-	},
-];
+		{
+			title: 'Grammar',
+			items: [
+				{
+					level: Level.N5,
+					href: `${route.learning}/n5/grammar`,
+					description: 'Minna no Nihongo',
+				},
+				{
+					level: Level.N4,
+					href: `${route.learning}/n4/grammar`,
+					description: 'Minna no Nihongo',
+				},
+				{
+					level: Level.N3,
+					href: `${route.learning}/n3/grammar`,
+					description: 'Soumatome',
+				},
+				{
+					level: Level.N2,
+					href: `${route.learning}/n2/grammar`,
+					description: 'Soumatome',
+				},
+				{
+					level: Level.N1,
+					href: `${route.learning}/n1/grammar`,
+					description: 'Soumatome',
+				},
+			],
+		},
+		{
+			title: 'Vocabulary',
+			items: [
+				{
+					level: Level.N5,
+					href: `${route.learning}/n5/vocabulary`,
+					description: 'Minna no Nihongo',
+				},
+				{
+					level: Level.N4,
+					href: `${route.learning}/n4/vocabulary`,
+					description: 'Minna no Nihongo',
+				},
+				{
+					level: Level.N3,
+					href: `${route.learning}/n3/vocabulary`,
+					description: 'Soumatome',
+				},
+				{
+					level: Level.N2,
+					href: `${route.learning}/n2/vocabulary`,
+					description: 'Soumatome',
+				},
+				{
+					level: Level.N1,
+					href: `${route.learning}/n1/vocabulary`,
+					description: 'Soumatome',
+				},
+			],
+		},
+		{
+			title: 'Kanji',
+			items: [
+				{
+					level: Level.N5,
+					href: `${route.learning}/n5/kanji`,
+					description: 'Minna no Nihongo',
+				},
+				{
+					level: Level.N4,
+					href: `${route.learning}/n4/kanji`,
+					description: 'Minna no Nihongo',
+				},
+				{
+					level: Level.N3,
+					href: `${route.learning}/n3/kanji`,
+					description: 'Soumatome',
+				},
+				{
+					level: Level.N2,
+					href: `${route.learning}/n2/kanji`,
+					description: 'Soumatome',
+				},
+				{
+					level: Level.N1,
+					href: `${route.learning}/n1/kanji`,
+					description: 'Soumatome',
+				},
+			],
+		},
+	];
+
 const navLinks = [
 	{ href: route.home, title: 'Trang chủ' },
 	{ href: route.learning, title: 'Học tập' },
 	{ href: route.practice, title: 'Luyện tập' },
 	{ href: route.mockTest, title: 'Bảng xếp hạng' },
 ];
+
 
 export default function Navbar() {
 	const isMobile = useIsMobile();
@@ -203,31 +206,6 @@ export default function Navbar() {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 
-					<NavigationMenuItem className='hidden md:block'>
-						<NavigationMenuTrigger>Practice</NavigationMenuTrigger>
-						<NavigationMenuContent>
-							<ul className='grid w-[200px] gap-4'>
-								<li>
-									<NavigationMenuLink asChild>
-										<Link href='/practice'>Vocabulary</Link>
-									</NavigationMenuLink>
-									<NavigationMenuLink asChild>
-										<Link href='/about'>Grammar</Link>
-									</NavigationMenuLink>
-									<NavigationMenuLink asChild>
-										<Link href='/about'>Kanji</Link>
-									</NavigationMenuLink>
-									<NavigationMenuLink asChild>
-										<Link href='/contact'>Reading</Link>
-									</NavigationMenuLink>
-									<NavigationMenuLink asChild>
-										<Link href='/contact'>Listening</Link>
-									</NavigationMenuLink>
-								</li>
-							</ul>
-						</NavigationMenuContent>
-					</NavigationMenuItem>
-
 					{/* Navigation Item 4 */}
 					<NavigationMenuItem className='hidden md:block'>
 						<NavigationMenuTrigger>Thi thử</NavigationMenuTrigger>
@@ -270,7 +248,7 @@ export default function Navbar() {
 									</NavigationMenuLink>
 								</li>
 							</ul>
-						</NavigationMenuContent>s
+						</NavigationMenuContent>
 					</NavigationMenuItem>
 
 					{/* Navigation Item 5 */}
@@ -285,7 +263,7 @@ export default function Navbar() {
 											Renshyuu JLPT
 										</Link>
 									</NavigationMenuLink>
-									<NavigationMenuLink asChild> 
+									<NavigationMenuLink asChild>
 										<Link href='/about' className='flex-row items-center gap-2'>
 											<CircleIcon />
 											Us
@@ -311,29 +289,8 @@ export default function Navbar() {
 				</NavigationMenuList>
 			</NavigationMenu>
 
-			{/* Login Button */}
-			<div className='flex align-center justify-between'>
-				{/* <ProfileDropdown
-					trigger={
-						<Button variant='ghost' size='icon' className='size-9.5'>
-							<Avatar className='size-9.5 rounded-md'>
-								<AvatarImage src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png' />
-								<AvatarFallback>JD</AvatarFallback>
-							</Avatar>
-						</Button>
-					}
-				/> */}
-				<Button className='rounded-lg max-md:hidden' asChild>
-					<Link href='/login'>Login</Link>
-				</Button>
-			</div>
-
 			{/* Navigation for small screens */}
 			<div className='flex gap-4 md:hidden'>
-				<Button className='rounded-lg' asChild>
-					<Link href='/login'>Login</Link>
-				</Button>
-
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant='outline' size='icon'>

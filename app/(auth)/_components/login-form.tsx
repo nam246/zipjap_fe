@@ -1,25 +1,50 @@
 'use client';
 
 import { useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/lib/auth-context';
 
 const LoginForm = () => {
+	const router = useRouter();
+	const { login, isLoading } = useAuth();
 	const [isVisible, setIsVisible] = useState(false);
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		try {
+			await login(username, password);
+			router.refresh();
+			router.push('/dashboard');
+		} catch (error) {
+			console.error('Login failed:', error);
+			// Ideally show error message to user
+			alert('Login failed. Please check your credentials.');
+		}
+	};
 
 	return (
-		<form className='space-y-4' onSubmit={(e) => e.preventDefault()}>
-			{/* Email */}
+		<form className='space-y-4' onSubmit={handleSubmit}>
+			{/* Username */}
 			<div className='space-y-1'>
-				<Label htmlFor='userEmail' className='leading-5'>
+				<Label htmlFor='username' className='leading-5'>
 					Tên đăng nhập*
 				</Label>
-				<Input type='email' id='userEmail' placeholder='Nhập tên tài khoản' />
+				<Input
+					type='text'
+					id='username'
+					placeholder='Nhập tên tài khoản'
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					required
+				/>
 			</div>
 
 			{/* Password */}
@@ -33,8 +58,12 @@ const LoginForm = () => {
 						type={isVisible ? 'text' : 'password'}
 						placeholder='••••••••••••••••'
 						className='pr-9'
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						required
 					/>
 					<Button
+						type='button' // Prevent form submission
 						variant='ghost'
 						size='icon'
 						onClick={() => setIsVisible((prevState) => !prevState)}
@@ -63,8 +92,8 @@ const LoginForm = () => {
 				</a>
 			</div>
 
-			<Button className='w-full' type='submit'>
-				Sign in
+			<Button className='w-full' type='submit' disabled={isLoading}>
+				{isLoading ? 'Signing in...' : 'Sign in'}
 			</Button>
 		</form>
 	);
