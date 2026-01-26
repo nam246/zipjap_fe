@@ -103,3 +103,4 @@ textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
 - sửa phần hero, sử dụng hero mới
 - Thêm phần FAQ
 - Thêm phần features
+- Tham khảo 1 số block để đồng bộ giao diện trên đây https://www.shadcnui-blocks.com/components/radio-group
