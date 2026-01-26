@@ -1,4 +1,4 @@
-import LearningHeader from '@/components/layout/learning/learning-header';
+import PageHeader from '@/app/(public)/_components/page-header';
 
 import { Lesson, Kanji, Level } from '@/lib/types';
 import LessonItem from '@/components/layout/learning/lesson-items';
@@ -22,7 +22,7 @@ export default async function LearningKanjiPage({
 	return (
 		<>
 			{/* Header */}
-			<LearningHeader title={`Kanji ${level}`} description='Từ vựng các cấp độ' />
+			<PageHeader title={`Kanji ${level}`} description='Từ vựng các cấp độ' />
 
 			<div className='space-y-4'>
 				{lessons.length > 0 &&

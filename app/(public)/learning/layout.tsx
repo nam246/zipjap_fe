@@ -1,5 +1,5 @@
 import { Level } from "@/lib/types";
-import NavMenu from "../_components/nav-menu";
+import NavMenu from "./_components/nav-menu";
 
 export default async function LearningLayout({
   children,
@@ -11,8 +11,8 @@ export default async function LearningLayout({
   const { level } = await params;
 
   return (
-    <div className="max-w-7xl mx-auto min-h-screen">
-      <NavMenu />
+    <div className="">
+      {/* <NavMenu /> */}
       <div className="space-y-6">{children}</div>
     </div>
   );

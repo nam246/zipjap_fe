@@ -1,9 +1,8 @@
 import { Grammar, Lesson, Level } from '@/lib/types';
 import { getLessons, getGrammars } from '@/lib/data';
 import LessonItem from '@/components/layout/learning/lesson-items';
-import LearningHeader from '@/components/layout/learning/learning-header';
 import { GrammarList } from '@/components/entities';
-import FilterBar from '../../_components/filter';
+import PageHeader from '@/app/(public)/_components/page-header';
 
 export default async function LearningGrammarPage({
 	params,
@@ -23,7 +22,7 @@ export default async function LearningGrammarPage({
 	return (
 		<>
 			{/* Header */}
-			<LearningHeader
+			<PageHeader
 				title='Ngữ pháp tiếng Nhật'
 				description='Học các mẫu ngữ pháp từ cơ bản đến nâng cao'
 			/>

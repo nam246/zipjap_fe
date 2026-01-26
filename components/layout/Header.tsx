@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 import Navbar from "./Navbar";
 import LoginButton from "./LoginButton";
+import ThemeToggle from "./theme-toggle";
 
 export type NavigationSection = {
   title: string;
@@ -25,7 +26,10 @@ const Header = ({ className }: HeaderProps) => {
         {/* Navigation */}
         <Navbar />
 
-        <LoginButton />
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <LoginButton />
+        </div>
       </div>
     </header>
   );

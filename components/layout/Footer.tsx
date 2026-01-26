@@ -14,8 +14,8 @@ import Link from 'next/link';
 export default function Footer() {
 	return (
 		<footer className='mt-5 border-t relative'>
-			<div className='container mx-auto px-4 py-12'>
-				<div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+			<div className='max-w-7xl mx-auto px-4 py-12'>
+				<div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
 					{/* Brand */}
 					<div className='space-y-4'>
 						<div className='flex items-center gap-2'>
@@ -29,6 +29,32 @@ export default function Footer() {
 					{/* Links */}
 					<div>
 						<h3 className='font-bold text-slate-900 mb-4'>Học tập</h3>
+						<ul className='space-y-2 text-sm'>
+							<li>
+								<Link href='#' className='hover:text-primary transition-colors'>
+									Ngữ pháp
+								</Link>
+							</li>
+							<li>
+								<Link href='#' className='hover:text-primary transition-colors'>
+									Kanji
+								</Link>
+							</li>
+							<li>
+								<Link href='#' className='hover:text-primary transition-colors'>
+									Từ vựng
+								</Link>
+							</li>
+							<li>
+								<Link href='#' className='hover:text-primary transition-colors'>
+									Luyện nghe
+								</Link>
+							</li>
+						</ul>
+					</div>
+
+					<div>
+						<h3 className='font-bold text-slate-900 mb-4'>Luyện tập</h3>
 						<ul className='space-y-2 text-sm'>
 							<li>
 								<Link href='#' className='hover:text-primary transition-colors'>

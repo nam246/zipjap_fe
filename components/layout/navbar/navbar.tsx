@@ -14,16 +14,16 @@ export default function Navbar() {
                 {/* Desktop Menu */}
                 <NavMenu className="hidden md:block" />
 
-                <div className="flex items-center gap-3">
+                {/* <div className="flex items-center gap-3">
                     <Button variant="outline" className="hidden sm:inline-flex">
                         Sign In
                     </Button>
                     <Button className="hidden xs:inline-flex">Get Started</Button>
+                </div> */}
 
-                    {/* Mobile Menu */}
-                    <div className="md:hidden">
-                        <NavigationSheet />
-                    </div>
+                {/* Mobile Menu */}
+                <div className="md:hidden">
+                    <NavigationSheet />
                 </div>
             </div>
         </nav>

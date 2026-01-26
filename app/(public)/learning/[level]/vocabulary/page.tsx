@@ -1,7 +1,7 @@
 import { getLessons, getVocabularies } from '@/lib/data';
 import { Lesson, Level, Vocabulary } from '@/lib/types';
 
-import LearningHeader from '@/components/layout/learning/learning-header';
+import PageHeader from '@/app/(public)/_components/page-header';
 import LessonItem from '@/components/layout/learning/lesson-items';
 import { VocabularyList } from '@/components/entities';
 
@@ -23,7 +23,7 @@ export default async function LearningVocabularyPage({
 	return (
 		<>
 			{/* Header */}
-			<LearningHeader
+			<PageHeader
 				title={`Từ vựng ${level}`}
 				description='Từ vựng các cấp độ'
 			/>

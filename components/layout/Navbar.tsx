@@ -27,8 +27,6 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import LoginButton from './LoginButton';
-// import ProfileDropdown from '@/app/dashboard/_components/dropdown-profile';
 
 const learningMenuItems: {
 	title: string;
@@ -178,27 +176,27 @@ export default function Navbar() {
 							<ul className='grid w-[200px] gap-4'>
 								<li>
 									<NavigationMenuLink asChild>
-										<Link href={`${route.practice}/n5`} className='flex-row items-center gap-2'>
+										<Link href='/flashcards' className='flex-row items-center gap-2'>
 											<CircleHelpIcon />
-											Vocabulary
+											Flashcards
 										</Link>
 									</NavigationMenuLink>
 									<NavigationMenuLink asChild>
-										<Link href='#' className='flex-row items-center gap-2'>
+										<Link href='quick-test' className='flex-row items-center gap-2'>
 											<CircleIcon />
-											Grammar
+											Làm bài kiểm tra ngắn
 										</Link>
 									</NavigationMenuLink>
 									<NavigationMenuLink asChild>
-										<Link href='#' className='flex-row items-center gap-2'>
+										<Link href='/read-and-listen' className='flex-row items-center gap-2'>
 											<CircleCheckIcon />
-											Reading
+											Đọc và nghe hiểu
 										</Link>
 									</NavigationMenuLink>
 									<NavigationMenuLink asChild>
-										<Link href='#' className='flex-row items-center gap-2'>
+										<Link href='/mock-test' className='flex-row items-center gap-2'>
 											<CircleCheckIcon />
-											Listening
+											Thi thử JLPT
 										</Link>
 									</NavigationMenuLink>
 								</li>

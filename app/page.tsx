@@ -26,6 +26,9 @@ import { Button } from '@/components/ui/button';
 import HeroSection from '@/components/layout/HeroSection';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Hero from '@/components/layout/hero';
+import Features from '@/components/layout/features';
+import FAQ from '@/components/layout/faq';
 
 const features = [
 	{
@@ -60,25 +63,25 @@ const levels: {
 	lessons: number;
 	students: number;
 }[] = [
-	{
-		title: 'N5 - Sơ cấp',
-		description: 'Nền tảng Hiragana, Katakana và từ vựng cơ bản',
-		lessons: 120,
-		students: 15000,
-	},
-	{
-		title: 'N4 - Trung cấp',
-		description: 'Ngữ pháp tiếng Nhật cơ bản và hội thoại hàng ngày',
-		lessons: 180,
-		students: 10000,
-	},
-	{
-		title: 'N3 - Trung cao cấp',
-		description: 'Giao tiếp thành thạo trong các tình huống thực tế',
-		lessons: 240,
-		students: 6000,
-	},
-];
+		{
+			title: 'N5 - Sơ cấp',
+			description: 'Nền tảng Hiragana, Katakana và từ vựng cơ bản',
+			lessons: 120,
+			students: 15000,
+		},
+		{
+			title: 'N4 - Trung cấp',
+			description: 'Ngữ pháp tiếng Nhật cơ bản và hội thoại hàng ngày',
+			lessons: 180,
+			students: 10000,
+		},
+		{
+			title: 'N3 - Trung cao cấp',
+			description: 'Giao tiếp thành thạo trong các tình huống thực tế',
+			lessons: 240,
+			students: 6000,
+		},
+	];
 
 // Homepage Component
 export default function Homepage() {
@@ -87,17 +90,20 @@ export default function Homepage() {
 			<Header />
 			<div className='min-h-screen'>
 				{/* Hero Section */}
-				<HeroSection />
-				{/* <HeroSectionv2 stats={stats} /> */}
+				{/* <HeroSection /> */}
+				<Hero />
 
 				{/* Features Section */}
 				<FeaturesSection features={features} />
+				<Features />
 
 				{/* Levels Section */}
 				<LevelSection levels={levels} />
 
 				{/* CTA Section */}
-				<CTASection />
+				{/* <CTASection /> */}
+
+				<FAQ />
 
 				<style jsx>{`
 					@keyframes blob {

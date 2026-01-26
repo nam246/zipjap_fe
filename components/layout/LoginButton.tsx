@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import ProfileDropdown from '@/app/(private)/_components/dropdown-profile';
 import { Button } from '@/components/ui/button';
