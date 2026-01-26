@@ -84,3 +84,22 @@ textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
 - sửa lại dashboard sidebar cho đúng link, tên.
 - bỏ nút đăng xuất ở trang user
 - sửa breadcrumb cho đúng với link
+
+### Tham khảo 1 homepage mới có cấu trúc như sau:
+
+```
+ <>
+    <Navbar />
+    <Hero />
+    <Features />
+    <FAQ />
+    <Testimonial />
+    <Pricing />
+    <Footer />
+</>
+```
+
+- Mình sẽ sửa lại phần navbar, sử dụng navbar theo cấu trúc mới nhưng vẫn giữ lại giao diện navbar cũ
+- sửa phần hero, sử dụng hero mới
+- Thêm phần FAQ
+- Thêm phần features
