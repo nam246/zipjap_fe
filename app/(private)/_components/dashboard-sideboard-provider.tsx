@@ -134,6 +134,7 @@ const menusSidebar: menuSidebarItem[] = [
 				title: 'Settings & Integrations',
 				url: '/settings',
 			},
+			// Check Role if Admin
 			{
 				icon: <UsersIcon />,
 				title: 'User Management',
