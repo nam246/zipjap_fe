@@ -60,10 +60,10 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
           </div>
           <div className="flex flex-1 flex-col items-start">
             <span className="text-foreground text-lg font-semibold">
-              John Doe
+              {user?.name}
             </span>
             <span className="text-muted-foreground text-base">
-              john.doe@example.com
+              {user?.email}
             </span>
           </div>
         </DropdownMenuLabel>
@@ -73,15 +73,15 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
         <DropdownMenuGroup>
           <DropdownMenuItem className="px-4 py-2.5 text-base">
             <UserIcon className="text-foreground size-5" />
-            <Link href={`${route.dashboard}`}>My account</Link>
+            <Link href={`/profile`}>My account</Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="px-4 py-2.5 text-base">
             <SettingsIcon className="text-foreground size-5" />
-            <span>Settings</span>
+            <Link href={`/settings`}>Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="px-4 py-2.5 text-base">
             <CreditCardIcon className="text-foreground size-5" />
-            <span>Billing</span>
+            <Link href={`/activities`}>Activities</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
 

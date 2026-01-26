@@ -42,67 +42,67 @@ type menuSidebarItem = {
 
 const menusSidebar: menuSidebarItem[] = [
 	{
-		groupTitle: 'Learning',
+		groupTitle: 'My Learning Content',
 		groupContent: [
 			{
 				icon: <Library />,
-				title: 'List of Vocabulary',
-				url: '/vocabulary-list',
+				title: 'Vocabulary',
+				url: '/bookmarked-vocabulary',
 			},
 			{
 				icon: <BookOpenIcon />,
-				title: 'List of Grammar',
-				url: '/grammar-list',
+				title: 'Grammar',
+				url: '/bookmarked-grammar',
 			},
 			{
 				icon: <Languages />,
-				title: 'List of Kanji',
-				url: '/kanji-list',
+				title: 'Kanji',
+				url: '/bookmarked-kanji',
 			},
 		],
 	},
 	{
-		groupTitle: 'Practice',
+		groupTitle: 'Create New Learning Path',
 		groupContent: [
 			{
 				icon: <ChartSplineIcon />,
-				title: 'Content Performance',
+				title: 'Create New Vocabulary',
 				url: '/add-vocabulary',
 			},
 			{
 				icon: <UsersIcon />,
-				title: 'Audience Insight',
+				title: 'Add Another Grammar',
 				url: '/add-grammar',
 			},
 			{
 				icon: <ChartPieIcon />,
-				title: 'Engagement Metrics',
+				title: 'Add Favorites Kanji',
 				url: '/add-kanji',
 			},
 			{
 				icon: <HashIcon />,
-				title: 'Hashtag Performance',
+				title: 'Collection Question',
 				url: '/add-question',
 			},
 			{
 				icon: <ArrowRightLeftIcon />,
-				title: 'Competitor Analysis',
-				url: '#',
+				title: 'Mocktest Builder',
+				url: '/mock-test-builder',
 			},
 			{
 				icon: <ArrowRightLeftIcon />,
-				title: 'Competitor Analysis',
-				url: '#',
+				title: 'Go Learning',
+				url: '/learning',
 			},
 			{
 				icon: <Clock9Icon />,
-				title: 'Campaign Tracking',
-				url: '#',
+				title: 'Go Practice',
+				url: '/practice',
 			},
 			{
 				icon: <ClipboardListIcon />,
-				title: 'Sentiment Tracking',
-				url: '#',
+				title: 'Do Mocktest',
+				url: '/mock-test',
 			},
 			{
 				icon: <CrownIcon />,
@@ -112,17 +112,17 @@ const menusSidebar: menuSidebarItem[] = [
 		],
 	},
 	{
-		groupTitle: 'Supporting Features',
+		groupTitle: 'Profile Overview',
 		groupContent: [
 			{
 				icon: <SquareActivityIcon />,
-				title: 'Real Time Monitoring',
-				url: '#',
+				title: 'Profile Information',
+				url: '/profile',
 			},
 			{
 				icon: <CalendarClockIcon />,
-				title: 'Schedule Post & Calendar',
-				url: '#',
+				title: 'Dashboard',
+				url: '/dashboard',
 			},
 			{
 				icon: <Undo2Icon />,
@@ -132,12 +132,12 @@ const menusSidebar: menuSidebarItem[] = [
 			{
 				icon: <SettingsIcon />,
 				title: 'Settings & Integrations',
-				url: '#',
+				url: '/settings',
 			},
 			{
 				icon: <UsersIcon />,
 				title: 'User Management',
-				url: '/user',
+				url: '/user-management',
 			},
 		],
 	},

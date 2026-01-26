@@ -1,7 +1,6 @@
 import { BookOpenIcon, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
 
-import { Card } from '@/components/ui/card';
-
+import UserStatistics from '../_components/user-statistics';
 import LearningStatsCard from '@/app/(private)/_components/learning-stats-card';
 import ProgressOverviewCard from '@/app/(private)/_components/progress-overview-card';
 import RecentLessonsCard from '@/app/(private)/_components/recent-lessons-card';
@@ -149,6 +148,16 @@ const DashboardShell = () => {
 
 			{/* Recent Lessons */}
 			<RecentLessonsCard lessons={recentLessonsData} />
+
+			{/* User Statistic */}
+			<UserStatistics
+				lessonsCompleted={24}
+				vocabularyLearned={285}
+				grammarPatterns={18}
+				totalStudyHours={156}
+				currentLevel='N5'
+				streak={12}
+			/>
 		</div>
 	);
 };
