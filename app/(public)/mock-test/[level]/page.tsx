@@ -83,7 +83,7 @@ export default async function ListTestPage({
 	return (
 		<>
 			<Title />
-			<div className='grid grid-cols-4 gap-3'>
+			<div className='grid grid-cols-3 gap-4'>
 				{testData.length > 0 &&
 					testData.map((data, index) => (
 						<TestCard
