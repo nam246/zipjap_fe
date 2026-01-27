@@ -1,8 +1,8 @@
 import type { ComponentType } from 'react';
 import {
-	Clock8Icon,
-	MapPinIcon,
-	BriefcaseBusinessIcon,
+	Linkedin,
+	Mail,
+	Github,
 	PhoneIcon,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,17 +18,17 @@ type ContactInfo = {
 const contactInfo = [
 	{
 		title: 'Thời gian ',
-		icon: Clock8Icon,
+		icon: Linkedin,
 		description: 'Monday-Friday\n8:00 am to 5:00 pm',
 	},
 	{
 		title: 'Email',
-		icon: MapPinIcon,
+		icon: Mail,
 		description: '24410250@ms.uit.edu.vn\ntrungvuhoang2005@gmail.com',
 	},
 	{
 		title: 'Github',
-		icon: BriefcaseBusinessIcon,
+		icon: Github,
 		description: 'https://github.com/nam246\n96812, USA',
 	},
 	{
@@ -50,9 +50,9 @@ export default function ContactPage() {
 			<div>
 				<h3 className='mb-6 text-2xl font-semibold'>Thông tin liên hệ!</h3>
 				<p className='text-muted-foreground mb-10 text-lg font-medium'>
-					shadcn/studio gives you the blocks and components you need to create a
-					truly professional website, landing page or admin panel for your SaaS and
-					gives the blocks.
+					Nếu bạn có bất kỳ thắc mắc nào liên quan đến công trình, đề tài này hoặc các nội dung trình bày trong dự án, 
+					vui lòng liên hệ với chúng tôi để được giải đáp chi tiết. 
+					Chúng tôi luôn sẵn sàng tiếp nhận ý kiến đóng góp, trao đổi thêm thông tin và hỗ trợ bạn trong thời gian sớm nhất.
 				</p>
 
 				{/* Contact Info Grid */}

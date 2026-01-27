@@ -3,93 +3,15 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, RotateCcw, Brain, BookOpen, Layers, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-
-// --- Types & Data ---
-
-type Flashcard = {
-    id: string;
-    front: string;
-    reading?: string;
-    meaning: string;
-    example?: string;
-    exampleMeaning?: string;
-};
-
-type Deck = {
-    id: string;
-    title: string;
-    description: string;
-    level: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
-    type: 'Vocabulary' | 'Kanji' | 'Grammar';
-    count: number;
-    cards: Flashcard[];
-};
-
-const FLASHCARD_DECKS: Deck[] = [
-    {
-        id: 'n5-vocab-1',
-        title: 'N5 Vocabulary - Basics',
-        description: 'Essential daily words for beginners',
-        level: 'N5',
-        type: 'Vocabulary',
-        count: 10,
-        cards: [
-            { id: '1', front: '私', reading: 'watashi', meaning: 'I; me', example: '私は学生です。', exampleMeaning: 'I am a student.' },
-            { id: '2', front: '猫', reading: 'neko', meaning: 'Cat', example: '猫が好きです。', exampleMeaning: 'I like cats.' },
-            { id: '3', front: '犬', reading: 'inu', meaning: 'Dog', example: '犬はかわいいです。', exampleMeaning: 'Dogs are cute.' },
-            { id: '4', front: '食べる', reading: 'taberu', meaning: 'To eat', example: 'パンを食べます。', exampleMeaning: 'I eat bread.' },
-            { id: '5', front: '飲む', reading: 'nomu', meaning: 'To drink', example: '水を飲みます。', exampleMeaning: 'I drink water.' },
-            { id: '6', front: '本', reading: 'hon', meaning: 'Book', example: '本を読みます。', exampleMeaning: 'I read a book.' },
-            { id: '7', front: '学生', reading: 'gakusei', meaning: 'Student', example: '私は日本語の学生です。', exampleMeaning: 'I am a Japanese language student.' },
-            { id: '8', front: '学校', reading: 'gakkou', meaning: 'School', example: '学校へ行きます。', exampleMeaning: 'I go to school.' },
-            { id: '9', front: '先生', reading: 'sensei', meaning: 'Teacher', example: '田中先生は優しいです。', exampleMeaning: 'Mr. Tanaka is kind.' },
-            { id: '10', front: '日本', reading: 'nihon', meaning: 'Japan', example: '日本に行きたいです。', exampleMeaning: 'I want to go to Japan.' },
-        ]
-    },
-    {
-        id: 'n5-kanji-1',
-        title: 'N5 Kanji - Numbers & Time',
-        description: 'Basic kanji for numbers and calendar',
-        level: 'N5',
-        type: 'Kanji',
-        count: 10,
-        cards: [
-            { id: 'k1', front: '一', reading: 'ichi / hito', meaning: 'One', example: '一つ (hitotsu)', exampleMeaning: 'One thing' },
-            { id: 'k2', front: '二', reading: 'ni / futa', meaning: 'Two', example: '二月 (nigatsu)', exampleMeaning: 'February' },
-            { id: 'k3', front: '三', reading: 'san / mi', meaning: 'Three', example: '三日 (mikka)', exampleMeaning: '3rd day of the month' },
-            { id: 'k4', front: '四', reading: 'yon / shi', meaning: 'Four', example: '四月 (shigatsu)', exampleMeaning: 'April' },
-            { id: 'k5', front: '五', reading: 'go / itsu', meaning: 'Five', example: '五円 (goen)', exampleMeaning: '5 yen' },
-            { id: 'k6', front: '日', reading: 'nichi / hi', meaning: 'Day / Sun', example: '日曜日 (nichiyoubi)', exampleMeaning: 'Sunday' },
-            { id: 'k7', front: '月', reading: 'getsu / tsuki', meaning: 'Month / Moon', example: '月曜日 (getsuyoubi)', exampleMeaning: 'Monday' },
-            { id: 'k8', front: '火', reading: 'ka / hi', meaning: 'Fire', example: '火曜日 (kayoubi)', exampleMeaning: 'Tuesday' },
-            { id: 'k9', front: '水', reading: 'sui / mizu', meaning: 'Water', example: '水曜日 (suiyoubi)', exampleMeaning: 'Wednesday' },
-            { id: 'k10', front: '年', reading: 'nen / toshi', meaning: 'Year', example: '来年 (rainen)', exampleMeaning: 'Next year' },
-        ]
-    },
-    {
-        id: 'n4-gram-1',
-        title: 'N4 Grammar - Verbs',
-        description: 'Verb conjugations and helpers',
-        level: 'N4',
-        type: 'Grammar',
-        count: 5,
-        cards: [
-            { id: 'g1', front: '～てはいけません', reading: 'te wa ikemasen', meaning: 'Must not do (Prohibition)', example: 'ここで写真を撮ってはいけません。', exampleMeaning: 'You must not take photos here.' },
-            { id: 'g2', front: '～なければなりません', reading: 'nakereba narimasen', meaning: 'Must do (Obligation)', example: '毎日薬を飲まなければなりません。', exampleMeaning: 'I must take medicine every day.' },
-            { id: 'g3', front: '～てもいいです', reading: 'temo ii desu', meaning: 'May do / Is allowed to', example: '入ってもいいですか？', exampleMeaning: 'May I enter?' },
-            { id: 'g4', front: '～たことがあります', reading: 'ta koto ga arimasu', meaning: 'Have done before (Experience)', example: '日本へ行ったことがあります。', exampleMeaning: 'I have been to Japan.' },
-            { id: 'g5', front: '～たり～たりします', reading: 'tari ~ tari shimasu', meaning: 'Do things like A and B', example: '日曜日は本を読んだり、映画を見たりします。', exampleMeaning: 'On Sundays, I read books, watch movies, etc.' },
-        ]
-    }
-];
+import { Level, Flashcard, Deck } from '@/lib/types';
 
 // --- Components ---
 
-export default function FlashcardApp() {
+export default function FlashcardApp({ decks }: { decks: Deck[] }) {
     const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
 
     if (selectedDeck) {
@@ -103,13 +25,8 @@ export default function FlashcardApp() {
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
-            <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold tracking-tight">Flashcards Library</h1>
-                <p className="text-muted-foreground">Select a deck to start practicing your Japanese.</p>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {FLASHCARD_DECKS.map((deck) => (
+                {decks.map((deck) => (
                     <DeckCard
                         key={deck.id}
                         deck={deck}
@@ -129,29 +46,23 @@ function DeckCard({ deck, onClick }: { deck: Deck; onClick: () => void }) {
             className="group hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden border-2 hover:border-primary/50"
             onClick={onClick}
         >
-            <div className="p-6 space-y-4">
-                <div className="flex items-start justify-between">
-                    <Badge variant={
-                        deck.level === 'N5' ? 'default' :
-                            deck.level === 'N4' ? 'secondary' : 'outline'
-                    } className="mb-2">
-                        {deck.level}
-                    </Badge>
-                    <div className="p-2 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
-                        <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                </div>
-
-                <div>
-                    <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors">{deck.title}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">{deck.description}</p>
-                </div>
-
+            <CardHeader>
+                <Badge variant={
+                    deck.level === Level.N5 ? 'default' :
+                        deck.level === Level.N4 ? 'secondary' : 'outline'
+                } className="mb-2">
+                    {deck.level}
+                </Badge>
+                <CardTitle>{deck.title}</CardTitle>
+                <CardDescription>{deck.description}</CardDescription>
+                <CardAction><Icon className="w-5 h-5 text-primary" /></CardAction>
+            </CardHeader>
+            <CardContent className="p-6 space-y-4">
                 <div className="pt-4 flex items-center justify-between text-sm text-muted-foreground border-t">
                     <span>{deck.count} cards</span>
                     <span className="font-medium text-primary group-hover:translate-x-1 transition-transform">Start &rarr;</span>
                 </div>
-            </div>
+            </CardContent>
         </Card>
     );
 }

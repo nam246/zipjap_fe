@@ -52,6 +52,26 @@ export type Example = {
 	description: string;
 };
 
+export type Flashcard = {
+	id: string;
+	front: string;
+	reading?: string;
+	meaning: string;
+	example?: string;
+	exampleMeaning?: string;
+};
+
+export type Deck = {
+	id: string;
+	title: string;
+	description: string;
+	level: Level;
+	type: 'Vocabulary' | 'Kanji' | 'Grammar';
+	count: number;
+	cards: Flashcard[];
+};
+
+
 export enum Level {
 	N5 = 'n5',
 	N4 = 'n4',
