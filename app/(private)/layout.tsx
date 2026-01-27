@@ -26,6 +26,7 @@ import LanguageDropdown from '@/app/(private)/_components/language-dropdown';
 import ProfileDropdown from '@/app/(private)/_components/dropdown-profile';
 import DashBoardSideboardProvider from './_components/dashboard-sideboard-provider';
 import ProtectedRouteWrapper from '@/components/protected-route-wrapper';
+import PageBreadcrumb from '@/components/layout/breadcrumb';
 
 const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
@@ -38,21 +39,7 @@ const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
 								<div className='flex items-center gap-4'>
 									<SidebarTrigger className='[&_svg]:!size-5' />
 									<Separator orientation='vertical' className='hidden !h-4 sm:block' />
-									<Breadcrumb className='hidden sm:block'>
-										<BreadcrumbList>
-											<BreadcrumbItem>
-												<BreadcrumbLink href='#'>Home</BreadcrumbLink>
-											</BreadcrumbItem>
-											<BreadcrumbSeparator />
-											<BreadcrumbItem>
-												<BreadcrumbLink href='#'>Dashboard</BreadcrumbLink>
-											</BreadcrumbItem>
-											<BreadcrumbSeparator />
-											<BreadcrumbItem>
-												<BreadcrumbPage>Free</BreadcrumbPage>
-											</BreadcrumbItem>
-										</BreadcrumbList>
-									</Breadcrumb>
+									<PageBreadcrumb />
 								</div>
 								<div className='flex items-center gap-1.5'>
 									<LanguageDropdown

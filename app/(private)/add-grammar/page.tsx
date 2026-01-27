@@ -1,8 +1,28 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from '@/components/ui/card';
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardContent,
+	CardAction,
+} from '@/components/ui/card';
 import { Plus, Save, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select';
+import { Level } from '@/lib/types';
 
 interface GrammarFormData {
 	pattern: string;
@@ -32,7 +52,9 @@ const AddGrammarPage = () => {
 	const [success, setSuccess] = useState('');
 
 	const handleInputChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+		>,
 	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({
@@ -45,7 +67,7 @@ const AddGrammarPage = () => {
 	const handleExampleChange = (
 		index: number,
 		field: 'japanese' | 'vietnamese',
-		value: string
+		value: string,
 	) => {
 		const newExamples = [...formData.examples];
 		newExamples[index] = {
@@ -159,40 +181,36 @@ const AddGrammarPage = () => {
 				)}
 
 				{/* Basic Info */}
-				<Card className='p-6'>
-					<h2 className='text-lg font-semibold text-gray-900 mb-4'>
-						Thông tin cơ bản
-					</h2>
+				<Card>
+					<CardHeader>
+						<CardTitle className='text-lg font-semibold text-gray-900 mb-4'>
+							Thông tin cơ bản
+						</CardTitle>
+					</CardHeader>
 
-					<div className='grid grid-cols-1 gap-4'>
+					<CardContent className='grid grid-cols-1 gap-4'>
 						{/* Pattern */}
-						<div>
-							<label className='block text-sm font-medium text-gray-700 mb-2'>
-								Mẫu ngữ pháp *
-							</label>
-							<input
+						<div className='w-full space-y-2'>
+							<Label htmlFor=''>Mẫu ngữ pháp *</Label>
+							<Input
 								type='text'
 								name='pattern'
 								value={formData.pattern}
 								onChange={handleInputChange}
 								placeholder='例：〜です'
-								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
 								disabled={loading}
 							/>
 						</div>
 
 						{/* Structure */}
-						<div>
-							<label className='block text-sm font-medium text-gray-700 mb-2'>
-								Cấu trúc *
-							</label>
-							<input
+						<div className='w-full space-y-2'>
+							<Label htmlFor=''>Cấu trúc *</Label>
+							<Input
 								type='text'
 								name='structure'
 								value={formData.structure}
 								onChange={handleInputChange}
 								placeholder='例：[Noun] です'
-								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
 								disabled={loading}
 							/>
 							<p className='text-xs text-gray-500 mt-1'>
@@ -201,27 +219,22 @@ const AddGrammarPage = () => {
 						</div>
 
 						{/* Meaning */}
-						<div>
-							<label className='block text-sm font-medium text-gray-700 mb-2'>
-								Ý nghĩa *
-							</label>
-							<input
+						<div className='w-full space-y-2'>
+							<Label htmlFor=''>Ý nghĩa *</Label>
+							<Input
 								type='text'
 								name='meaning'
 								value={formData.meaning}
 								onChange={handleInputChange}
 								placeholder='Ý nghĩa tiếng Việt'
-								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
 								disabled={loading}
 							/>
 						</div>
 
 						{/* Explanation */}
-						<div>
-							<label className='block text-sm font-medium text-gray-700 mb-2'>
-								Giải thích chi tiết
-							</label>
-							<textarea
+						<div className='w-full space-y-2'>
+							<Label htmlFor=''>Giải thích chi tiết</Label>
+							<Textarea
 								name='explanation'
 								value={formData.explanation}
 								onChange={handleInputChange}
@@ -233,150 +246,135 @@ const AddGrammarPage = () => {
 						</div>
 
 						{/* Level */}
-						<div>
-							<label className='block text-sm font-medium text-gray-700 mb-2'>
-								Trình độ
-							</label>
-							<select
-								name='level'
+						<div className='w-full space-y-2'>
+							<Label htmlFor='level'>Trình độ</Label>
+							<Select
 								value={formData.level}
-								onChange={handleInputChange}
-								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+								onValueChange={(value) =>
+									setFormData((prev) => ({
+										...prev,
+										level: value,
+									}))
+								}
 								disabled={loading}
 							>
-								<option value='N5'>N5</option>
-								<option value='N4'>N4</option>
-								<option value='N3'>N3</option>
-								<option value='N2'>N2</option>
-								<option value='N1'>N1</option>
-							</select>
+								<SelectTrigger className='w-full'>
+									<SelectValue placeholder='Chọn trình độ' />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectGroup>
+										<SelectLabel>Trình độ</SelectLabel>
+										<SelectItem value={Level.N5}>{Level.N5}</SelectItem>
+										<SelectItem value={Level.N4}>{Level.N4}</SelectItem>
+										<SelectItem value={Level.N3}>{Level.N3}</SelectItem>
+										<SelectItem value={Level.N2}>{Level.N2}</SelectItem>
+										<SelectItem value={Level.N1}>{Level.N1}</SelectItem>
+									</SelectGroup>
+								</SelectContent>
+							</Select>
 						</div>
-					</div>
+					</CardContent>
 				</Card>
-			{/* Media Upload */}
-			<Card className='p-6'>
-				<h2 className='text-lg font-semibold text-gray-900 mb-4'>
-					Hình ảnh minh họa
-				</h2>
+				{/* Media Upload */}
+				<Card>
+					<CardHeader>
+						<CardTitle>Hình ảnh minh họa</CardTitle>
+					</CardHeader>
 
-				<div className='space-y-4'>
-					<div>
-						<label className='block text-sm font-medium text-gray-700 mb-2'>
-							Tải lên hình ảnh
-						</label>
-						<input
-							type='file'
-							accept='image/*'
-							onChange={handleMediaChange}
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
-							disabled={loading}
-						/>
-						<p className='text-xs text-gray-500 mt-1'>
-							Ỗng hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)
-						</p>
-					</div>
-
-					{formData.mediaPreview && (
-						<div className='relative inline-block'>
-							<img
-								src={formData.mediaPreview}
-								alt='Preview'
-								className='max-w-xs h-auto rounded-lg border border-gray-300'
+					<CardContent>
+						<div className='w-full space-y-4'>
+							<Label htmlFor=''>Tải lên hình ảnh</Label>
+							<Input
+								type='file'
+								accept='image/*'
+								onChange={handleMediaChange}
+								disabled={loading}
 							/>
-							<button
-								type='button'
-								onClick={removeMedia}
-								className='absolute -top-2 -right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors'
-							>
-								<X className='w-4 h-4' />
-							</button>
+							<p className='text-xs text-gray-500 mt-1'>
+								Ỗng hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)
+							</p>
 						</div>
-					)}
-				</div>
-			</Card>
-				{/* Examples */}
-				<Card className='p-6'>
-					<div className='flex items-center justify-between mb-4'>
-						<h2 className='text-lg font-semibold text-gray-900'>Ví dụ</h2>
-						<button
-							type='button'
-							onClick={addExample}
-							className='flex items-center gap-1 px-3 py-1.5 text-sm bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-lg transition-colors'
-						>
-							<Plus className='w-4 h-4' />
-							Thêm ví dụ
-						</button>
-					</div>
 
-					<div className='space-y-4'>
+						{formData.mediaPreview && (
+							<div className='relative inline-block'>
+								<img
+									src={formData.mediaPreview}
+									alt='Preview'
+									className='max-w-xs h-auto rounded-lg border border-gray-300'
+								/>
+								<button
+									type='button'
+									onClick={removeMedia}
+									className='absolute -top-2 -right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors'
+								>
+									<X className='w-4 h-4' />
+								</button>
+							</div>
+						)}
+					</CardContent>
+				</Card>
+				{/* Examples */}
+				<Card>
+					<CardHeader>
+						<CardTitle>Ví dụ</CardTitle>
+						<CardAction>
+							<Button variant={'outline'} type='button' onClick={addExample}>
+								<Plus className='w-4 h-4' />
+								Thêm ví dụ
+							</Button>
+						</CardAction>
+					</CardHeader>
+
+					<CardContent className='space-y-4'>
 						{formData.examples.map((example, index) => (
 							<div key={index} className='p-4 border border-gray-200 rounded-lg'>
 								<div className='flex items-center justify-between mb-3'>
-									<p className='text-sm font-medium text-gray-700'>
-										Ví dụ {index + 1}
-									</p>
+									<p className='text-sm font-medium text-gray-700'>Ví dụ {index + 1}</p>
 									{formData.examples.length > 1 && (
-										<button
+										<Button
+											variant='destructive'
 											type='button'
 											onClick={() => removeExample(index)}
-											className='p-1 hover:bg-red-100 rounded transition-colors'
 										>
-											<X className='w-4 h-4 text-red-600' />
-										</button>
+											<X className='w-4 h-4' />
+										</Button>
 									)}
 								</div>
 
-								<div className='grid grid-cols-1 gap-3'>
-									<input
+								<div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
+									<Input
 										type='text'
 										value={example.japanese}
 										onChange={(e) =>
-											handleExampleChange(
-												index,
-												'japanese',
-												e.target.value
-											)
+											handleExampleChange(index, 'japanese', e.target.value)
 										}
 										placeholder='Câu tiếng Nhật'
-										className='px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
 										disabled={loading}
 									/>
-									<input
+									<Input
 										type='text'
 										value={example.vietnamese}
 										onChange={(e) =>
-											handleExampleChange(
-												index,
-												'vietnamese',
-												e.target.value
-											)
+											handleExampleChange(index, 'vietnamese', e.target.value)
 										}
 										placeholder='Dịch tiếng Việt'
-										className='px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
 										disabled={loading}
 									/>
 								</div>
 							</div>
 						))}
-					</div>
+					</CardContent>
 				</Card>
 
 				{/* Submit Button */}
 				<div className='flex gap-3'>
-					<button
-						type='submit'
-						disabled={loading}
-						className='flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium'
-					>
+					<Button variant='default' type='submit' disabled={loading}>
 						<Save className='w-4 h-4' />
 						{loading ? 'Đang lưu...' : 'Lưu ngữ pháp'}
-					</button>
-					<button
-						type='button'
-						className='px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium'
-					>
+					</Button>
+					<Button variant='secondary' type='button'>
 						Hủy
-					</button>
+					</Button>
 				</div>
 			</form>
 		</div>

@@ -73,21 +73,21 @@ const levels: {
 			description: 'Nền tảng Hiragana, Katakana và từ vựng cơ bản',
 			lessons: 120,
 			students: 15000,
-			link: '/learning/n5'
+			link: '/learning/n5/grammar'
 		},
 		{
 			title: 'N4 - Trung cấp',
 			description: 'Ngữ pháp tiếng Nhật cơ bản và hội thoại hàng ngày',
 			lessons: 180,
 			students: 10000,
-			link: '/learning/n4'
+			link: '/learning/n4/grammar'
 		},
 		{
 			title: 'N3 - Trung cao cấp',
 			description: 'Giao tiếp thành thạo trong các tình huống thực tế',
 			lessons: 240,
 			students: 6000,
-			link: '/learning/n3'
+			link: '/learning/n3/grammar'
 		},
 	];
 
@@ -117,7 +117,7 @@ export default function Homepage() {
 
 function FeaturesSection({ features }: { features: any }) {
 	return (
-		<section className='py-20'>
+		<section className='max-w-7xl mx-auto py-20'>
 			<div className='text-center mb-16'>
 				<h2 className='text-4xl md:text-5xl font-bold mb-4'>
 					Học tập theo giáo trình

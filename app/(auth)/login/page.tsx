@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import QuickLoginButton from '../_components/quick-login-button';
 import {
 	Card,
 	CardContent,
@@ -36,14 +36,7 @@ const LoginPage = () => {
           </p> */}
 
 					{/* Quick Login Buttons */}
-					<div className='mb-6 flex flex-wrap gap-4 sm:gap-6'>
-						<Button variant='outline' className='grow'>
-							Đăng nhập với quyền User
-						</Button>
-						<Button variant='outline' className='grow'>
-							Đăng nhập với quyền Admin
-						</Button>
-					</div>
+					<QuickLoginButton />
 
 					{/* Login Form */}
 					<div className='space-y-4'>

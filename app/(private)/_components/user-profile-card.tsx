@@ -31,7 +31,7 @@ const UserProfileCard = ({ user, onEditClick }: UserProfileCardProps) => {
 				<div className='flex items-center gap-4'>
 					{/* Avatar */}
 					<div className='w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center'>
-						<User className='w-10 h-10 text-white' />
+						<img src={'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png'} />
 					</div>
 
 					{/* User Info */}
