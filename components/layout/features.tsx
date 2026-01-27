@@ -1,47 +1,47 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
     BookCheck,
-    ChartPie,
+    BookMarked,
     FolderSync,
-    Goal,
-    Users,
-    Zap,
+    ChartArea,
+    Library,
+    BookOpenCheck,
 } from "lucide-react";
 
 const features = [
     {
-        icon: Goal,
-        title: "Identify Opportunities",
+        icon: ChartArea,
+        title: "Theo dõi tiến độ học tập",
         description:
             "Easily uncover untapped areas to explore and expand your reach effortlessly.",
     },
     {
         icon: BookCheck,
-        title: "Build Authority",
+        title: "Tự tạo Flashcards",
         description:
             "Create valuable content that resonates, inspires trust, and positions you as an expert.",
     },
     {
-        icon: ChartPie,
-        title: "Instant Insights",
+        icon: BookMarked,
+        title: "Bookmarked những từ vựng, Kanji, ngữ pháp",
         description:
             "Gain immediate, actionable insights with a quick glance, enabling fast decision-making.",
     },
     {
-        icon: Users,
-        title: "Engage with Your Audience",
+        icon: Library,
+        title: "Sưu tập và tạo bộ từ vựng riêng",
         description:
             "Boost audience engagement with interactive features like polls, quizzes, and forms.",
     },
     {
         icon: FolderSync,
-        title: "Automate Your Workflow",
+        title: "Sưu tập và tạo bộ Kanji riêng",
         description:
             "Streamline your processes by automating repetitive tasks, saving time and reducing effort.",
     },
     {
-        icon: Zap,
-        title: "Accelerate Growth",
+        icon: BookOpenCheck,
+        title: "Tạo bộ câu hỏi và đề thi cho bản thân",
         description:
             "Supercharge your growth by implementing strategies that drive results quickly and efficiently.",
     },
